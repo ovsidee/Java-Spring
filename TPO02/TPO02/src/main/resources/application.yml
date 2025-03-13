@@ -1,0 +1,9 @@
+spring:
+  banner:
+    location: logo-app
+
+pl:
+  edu:
+    pja:
+      tpo02:
+        filename: "./src/main/resources/words.csv"
