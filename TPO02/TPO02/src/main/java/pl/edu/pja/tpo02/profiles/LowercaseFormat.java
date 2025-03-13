@@ -9,7 +9,12 @@ import pl.edu.pja.tpo02.WordFormat;
 @Profile("lowerCase")
 public class LowercaseFormat implements WordFormat {
     @Override
-    public String printFormattedWord(Entry entry) {
+    public String printFormattedWord(String string) {
+        return string.toLowerCase();
+    }
+
+    @Override
+    public String printFormattedWordFromEntry(Entry entry) {
         return entry.toString().toLowerCase();
     }
 }

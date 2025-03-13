@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 @Service
@@ -31,4 +32,13 @@ public class FileService {
             throw new RuntimeException(e);
         }
     }
+
+    public void saveWordToFile(Entry entry) {
+        try (FileWriter writer = new FileWriter(filename, true)) {
+            writer.write( "\n" +entry.getTranslationEnglish() + "," + entry.getTranslationGerman() + "," + entry.getTranslationPolish() + "\n");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

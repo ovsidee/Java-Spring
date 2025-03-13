@@ -9,7 +9,12 @@ import pl.edu.pja.tpo02.WordFormat;
 @Profile("original")
 public class NormalFormat implements WordFormat {
     @Override
-    public String printFormattedWord(Entry entry) {
+    public String printFormattedWord(String string) {
+        return string;
+    }
+
+    @Override
+    public String printFormattedWordFromEntry(Entry entry) {
         return entry.toString();
     }
 }
