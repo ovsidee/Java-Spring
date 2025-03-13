@@ -19,4 +19,5 @@ public class AppConfig {
     public Random getRandom() {
         return new Random();
     }
+
 }

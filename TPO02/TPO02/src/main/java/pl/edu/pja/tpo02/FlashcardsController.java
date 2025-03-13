@@ -1,5 +1,44 @@
 package pl.edu.pja.tpo02;
 
-public class FlashcardsController {
+import org.springframework.stereotype.Controller;
 
+import java.util.Scanner;
+
+@Controller
+public class FlashcardsController {
+    public FileService fileService;
+    public EntryRepository entryRepository;
+
+    public FlashcardsController(FileService fileService, EntryRepository entryRepository) {
+        this.fileService = fileService;
+        this.entryRepository = entryRepository;
+    }
+
+    public void run() {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println(
+                    "Type \"1\" to get the list of all flashcards.\n" +
+                    "Type \"2\" to add a new flashcard.\n" +
+                    "Type \"3\" to get a test.\n" +
+                    "Type \"4\" to exit.\n"
+            );
+            String command = scanner.nextLine();
+            switch (command) {
+                case "1" -> {
+                    entryRepository.getAllEntries();
+                }
+                case "2" -> {
+
+                }
+                case "3" -> {
+
+                }
+                case "4" -> {
+                    System.out.println("Bye bye...");
+                    System.exit(1);
+                }
+            }
+        }
+    }
 }
