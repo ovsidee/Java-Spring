@@ -16,7 +16,6 @@ public class FileService {
     public FileService(EntryRepository repository, @Value("${pl.edu.pja.tpo02.filename}") String filename) {
         this.repository = repository;
         this.filename = filename;
-        System.out.println(filename);
     }
 
     public void loadWords() {
@@ -40,5 +39,4 @@ public class FileService {
             throw new RuntimeException(e);
         }
     }
-
 }

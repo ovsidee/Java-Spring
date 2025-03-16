@@ -24,7 +24,7 @@ public class FlashcardsController {
         fileService.loadWords();
         while (true) {
             System.out.println (
-                    "Type \"1\" to get the list of all flashcards.\n" +
+                    "\nType \"1\" to get the list of all flashcards.\n" +
                     "Type \"2\" to add a new flashcard.\n" +
                     "Type \"3\" to get a test.\n" +
                     "Type \"4\" to exit."
@@ -33,8 +33,11 @@ public class FlashcardsController {
             switch (command) {
                 case 1 -> {
                     for (Entry entry : entryRepository.getAllEntries()) {
-                        //TODO - normal formatting
-                        System.out.println(wordFormat.printFormattedWordFromEntry(entry));
+                        System.out.println(
+                                "English: \"" + wordFormat.printFormattedWord(entry.getTranslationEnglish()) + "\"," +
+                                " German: \"" + wordFormat.printFormattedWord(entry.getTranslationGerman()) + "\"," +
+                                " Polish: \"" + wordFormat.printFormattedWord(entry.getTranslationPolish()) + "\""
+                        );
                     }
                 }
                 case 2 -> {
@@ -59,7 +62,6 @@ public class FlashcardsController {
                 case 3 -> {
                     System.out.println("Random word test:");
 
-                    // Get a random word only once
                     Entry randomEntry = entryRepository.getRandomEntry();
 
                     int randomNumber = random.nextInt(3) + 1;
@@ -122,7 +124,6 @@ public class FlashcardsController {
                         }
                     }
                 }
-
                 case 4 -> {
                     System.out.println("Bye bye...");
                     System.exit(1);
