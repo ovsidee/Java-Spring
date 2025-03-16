@@ -1,6 +1,7 @@
 package pl.edu.pja.tpo02;
 
 import org.springframework.stereotype.Controller;
+import pl.edu.pja.tpo02.format.WordFormat;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -74,7 +75,7 @@ public class FlashcardsController {
                             if (wordInGerman.equalsIgnoreCase(randomEntry.getTranslationGerman())) {
                                 System.out.println("Correct! Now write it in Polish:");
                             } else {
-                                System.out.println("Incorrect! The correct answer was: \"" + wordFormat.printFormattedWord(randomEntry.getTranslationGerman()) + "\"");
+                                System.out.println("Incorrect! The correct answer was: \"" + wordFormat.printFormattedWord(randomEntry.getTranslationGerman()) + "\"" + ". Now write it in Polish:");
                             }
 
                             String wordInPolish = scanner.next();
@@ -93,7 +94,7 @@ public class FlashcardsController {
                             if (wordInEnglish.equalsIgnoreCase(randomEntry.getTranslationEnglish())) {
                                 System.out.println("Correct! Now write it in Polish:");
                             } else {
-                                System.out.println("Incorrect! The correct answer was: \"" + wordFormat.printFormattedWord(randomEntry.getTranslationEnglish()) + "\"");
+                                System.out.println("Incorrect! The correct answer was: \"" + wordFormat.printFormattedWord(randomEntry.getTranslationEnglish()) + "\"" + ". Now write it in Polish:");
                             }
 
                             String wordInPolish = scanner.next();
@@ -112,7 +113,7 @@ public class FlashcardsController {
                             if (wordInEnglish.equalsIgnoreCase(randomEntry.getTranslationEnglish())) {
                                 System.out.println("Correct! Now write it in German:");
                             } else {
-                                System.out.println("Incorrect! The correct answer was: \"" + wordFormat.printFormattedWord(randomEntry.getTranslationEnglish()) + "\"");
+                                System.out.println("Incorrect! The correct answer was: \"" + wordFormat.printFormattedWord(randomEntry.getTranslationEnglish()) + "\"" + ". Now write it in German:");
                             }
 
                             String wordInGerman = scanner.next();

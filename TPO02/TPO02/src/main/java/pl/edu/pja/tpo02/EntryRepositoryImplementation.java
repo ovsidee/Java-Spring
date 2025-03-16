@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Random;
 
 @Repository
-public class EntryRepository {
+public class EntryRepositoryImplementation implements EntryRepository {
     public List<Entry> entries;
     public Random random;
 
-    public EntryRepository(List<Entry> entries, Random random) {
+    public EntryRepositoryImplementation(List<Entry> entries, Random random) {
         this.entries = entries;
         this.random = random;
     }
