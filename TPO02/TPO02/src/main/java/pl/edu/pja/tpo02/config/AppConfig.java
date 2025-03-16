@@ -7,6 +7,7 @@ import pl.edu.pja.tpo02.entries.Entry;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 @Configuration
 public class AppConfig {
@@ -19,6 +20,11 @@ public class AppConfig {
     @Bean
     public Random getRandom() {
         return new Random();
+    }
+
+    @Bean
+    public Scanner getScanner(){
+        return new Scanner(System.in);
     }
 
 }

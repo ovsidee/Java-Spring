@@ -15,16 +15,17 @@ public class FlashcardsController {
     public EntryRepository entryRepository;
     public WordFormat wordFormat;
     public Random random;
+    public Scanner scanner;
 
-    public FlashcardsController(FileService fileService, EntryRepository entryRepository, WordFormat wordFormat, Random random) {
+    public FlashcardsController(FileService fileService, EntryRepository entryRepository, WordFormat wordFormat, Random random, Scanner scanner) {
         this.fileService = fileService;
         this.entryRepository = entryRepository;
         this.wordFormat = wordFormat;
         this.random = random;
+        this.scanner = scanner;
     }
 
     public void run() {
-        Scanner scanner = new Scanner(System.in);
         fileService.loadWords();
         while (true) {
             System.out.println (
