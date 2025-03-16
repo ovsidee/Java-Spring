@@ -1,7 +1,10 @@
-package pl.edu.pja.tpo02;
+package pl.edu.pja.tpo02.conroller;
 
 import org.springframework.stereotype.Controller;
-import pl.edu.pja.tpo02.format.WordFormat;
+import pl.edu.pja.tpo02.entries.Entry;
+import pl.edu.pja.tpo02.repository.EntryRepository;
+import pl.edu.pja.tpo02.services.FileService;
+import pl.edu.pja.tpo02.services.WordFormat;
 
 import java.util.Random;
 import java.util.Scanner;

@@ -1,16 +1,17 @@
-package pl.edu.pja.tpo02;
+package pl.edu.pja.tpo02.repository;
 
 import org.springframework.stereotype.Repository;
+import pl.edu.pja.tpo02.entries.Entry;
 
 import java.util.List;
 import java.util.Random;
 
 @Repository
-public class EntryRepositoryImplementation implements EntryRepository {
+public class EntryRepository {
     public List<Entry> entries;
     public Random random;
 
-    public EntryRepositoryImplementation(List<Entry> entries, Random random) {
+    public EntryRepository(List<Entry> entries, Random random) {
         this.entries = entries;
         this.random = random;
     }

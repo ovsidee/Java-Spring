@@ -1,6 +1,6 @@
-package pl.edu.pja.tpo02.format;
+package pl.edu.pja.tpo02.services;
 
-import pl.edu.pja.tpo02.Entry;
+import pl.edu.pja.tpo02.entries.Entry;
 
 public interface WordFormat {
     String printFormattedWordFromEntry(Entry entry);

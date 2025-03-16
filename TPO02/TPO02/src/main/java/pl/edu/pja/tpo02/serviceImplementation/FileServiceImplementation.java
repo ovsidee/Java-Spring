@@ -1,7 +1,10 @@
-package pl.edu.pja.tpo02;
+package pl.edu.pja.tpo02.serviceImplementation;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import pl.edu.pja.tpo02.entries.Entry;
+import pl.edu.pja.tpo02.repository.EntryRepository;
+import pl.edu.pja.tpo02.services.FileService;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

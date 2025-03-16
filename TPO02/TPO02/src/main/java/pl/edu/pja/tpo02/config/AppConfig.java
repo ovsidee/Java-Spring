@@ -1,7 +1,8 @@
-package pl.edu.pja.tpo02;
+package pl.edu.pja.tpo02.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import pl.edu.pja.tpo02.entries.Entry;
 
 import java.util.ArrayList;
 import java.util.List;

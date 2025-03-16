@@ -1,4 +1,4 @@
-package pl.edu.pja.tpo02;
+package pl.edu.pja.tpo02.entries;
 
 import java.util.Objects;
 
