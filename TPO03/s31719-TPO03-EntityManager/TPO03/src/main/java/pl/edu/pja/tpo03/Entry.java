@@ -1,11 +1,26 @@
 package pl.edu.pja.tpo03;
 
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
+@Entity
 public class Entry {
-    String translationEnglish;
-    String translationGerman;
-    String translationPolish;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long ID;
+
+    @Column(nullable = false)
+    private String translationEnglish;
+
+    @Column(nullable = false)
+    private String translationGerman;
+
+    @Column(nullable = false)
+    private String translationPolish;
+
+    public Entry() {}
 
     public Entry(String translationEnglish, String translationGerman, String translationPolish) {
         this.translationEnglish = translationEnglish;
@@ -23,6 +38,26 @@ public class Entry {
 
     public String getTranslationEnglish() {
         return translationEnglish;
+    }
+
+    public Long getID() {
+        return ID;
+    }
+
+    public void setTranslationGerman(String translationGerman) {
+        this.translationGerman = translationGerman;
+    }
+
+    public void setTranslationPolish(String translationPolish) {
+        this.translationPolish = translationPolish;
+    }
+
+    public void setTranslationEnglish(String translationEnglish) {
+        this.translationEnglish = translationEnglish;
+    }
+
+    public void setID(Long ID) {
+        this.ID = ID;
     }
 
     @Override

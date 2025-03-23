@@ -10,13 +10,13 @@ spring:
     console:
       path: /my-h2-console
   datasource:
-    url: jdbc:h2:file:./db/books;DATABASE_TO_UPPER=false
+    url: jdbc:h2:file:./db/entries;DATABASE_TO_UPPER=false
     username: s31719
     password: TPO03
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 pl:
