@@ -27,6 +27,14 @@ public class EntryRepository {
         return Optional.ofNullable(entityManager.find(Entry.class, id));
     }
 
+    public List<Entry> getAllEntriesSorted(String translationLanguage, boolean ascending) {
+        String order = ascending ? "ASC" : "DESC";
+        String queryString = "SELECT e FROM Entry e ORDER BY e." + translationLanguage + " " + order;
+
+        TypedQuery<Entry> query = entityManager.createQuery(queryString, Entry.class);
+        return query.getResultList();
+    }
+
     @Transactional
     public void addEntry(Entry entry) {
         entityManager.persist(entry);
@@ -46,5 +54,4 @@ public class EntryRepository {
         dbEntry.setTranslationGerman(entry.getTranslationGerman());
         return dbEntry;
     }
-
 }

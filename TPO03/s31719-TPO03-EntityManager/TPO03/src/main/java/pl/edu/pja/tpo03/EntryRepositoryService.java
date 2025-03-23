@@ -41,4 +41,8 @@ public class EntryRepositoryService {
     public Entry update(Entry entry) throws EntryNotFoundException  {
         return entryRepository.update(entry);
     }
+
+    public List<Entry> getAllEntriesSorted(String language, boolean ascending) {
+        return entryRepository.getAllEntriesSorted(language, ascending);
+    }
 }
