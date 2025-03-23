@@ -9,15 +9,18 @@ import java.util.Scanner;
 @Controller
 public class FlashcardsController {
     public EntryRepositoryService entryRepositoryService;
+    public DatabaseInitializer databaseInitializer;
     public WordFormat wordFormat;
     public Random random;
     public Scanner scanner;
 
-    public FlashcardsController(EntryRepositoryService entryRepositoryService, WordFormat wordFormat, Random random, Scanner scanner) {
+    public FlashcardsController(DatabaseInitializer databaseInitializer, EntryRepositoryService entryRepositoryService, WordFormat wordFormat, Random random, Scanner scanner) {
         this.entryRepositoryService = entryRepositoryService;
         this.wordFormat = wordFormat;
         this.random = random;
         this.scanner = scanner;
+        this.databaseInitializer = databaseInitializer;
+        databaseInitializer.initializeDatabase();
     }
 
     public void printAllEntries(){
@@ -46,7 +49,6 @@ public class FlashcardsController {
             System.out.println("This flashcard already exists");
         } else {
             entryRepositoryService.addEntry(newEntry);
-//          dataBaseService.saveWord(newEntry);
             System.out.println("Added a new flashcard: " + wordFormat.printFormattedWordFromEntry(newEntry));
         }
     }
@@ -92,13 +94,13 @@ public class FlashcardsController {
                     } else {
                         Entry entryToUpdate = optionalEntry.get();
 
-                        System.out.println("Enter new English translation (current: " + entryToUpdate.getTranslationEnglish() + "): ");
+                        System.out.println("Enter new English translation (current: " + wordFormat.printFormattedWord(entryToUpdate.getTranslationEnglish()) + "): ");
                         String newEnglish = scanner.nextLine();
 
-                        System.out.println("Enter new German translation (current: " + entryToUpdate.getTranslationGerman() + "): ");
+                        System.out.println("Enter new German translation (current: " + wordFormat.printFormattedWord(entryToUpdate.getTranslationGerman()) + "): ");
                         String newGerman = scanner.nextLine();
 
-                        System.out.println("Enter new Polish translation (current: " + entryToUpdate.getTranslationPolish() + "): ");
+                        System.out.println("Enter new Polish translation (current: " + wordFormat.printFormattedWord(entryToUpdate.getTranslationPolish()) + "): ");
                         String newPolish = scanner.nextLine();
 
                         entryToUpdate.setTranslationEnglish(newEnglish);

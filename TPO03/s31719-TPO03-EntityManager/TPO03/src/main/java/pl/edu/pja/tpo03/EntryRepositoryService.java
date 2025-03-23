@@ -1,7 +1,5 @@
 package pl.edu.pja.tpo03;
 
-import jakarta.persistence.TypedQuery;
-import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,40 +17,28 @@ public class EntryRepositoryService {
     }
 
     public List<Entry> getAllEntries() {
-        TypedQuery<Entry> query = entryRepository.getEntityManager().createQuery(
-                "SELECT e FROM Entry e", Entry.class
-        );
-        return query.getResultList();
+        return entryRepository.getAllEntries();
     }
 
     public Entry getRandomEntry() {
-        return getAllEntries().get(
-                random.nextInt(getAllEntries().size())
+        return entryRepository.getAllEntries().get(
+                random.nextInt(entryRepository.getAllEntries().size())
         );
     }
 
     public Optional<Entry> findById(Long id) {
-        return Optional.ofNullable(entryRepository.getEntityManager().find(Entry.class, id));
+        return entryRepository.findById(id);
     }
 
-    @Transactional
     public void addEntry(Entry entry) {
-        entryRepository.getEntityManager().persist(entry);
+        entryRepository.addEntry(entry);
     }
 
-    @Transactional
-    public void deleteById(Long id)   {
-        findById(id).ifPresent(entryRepository.getEntityManager()::remove);
+    public void deleteById(Long id) {
+        entryRepository.deleteById(id);
     }
 
-    @Transactional
     public Entry update(Entry entry) throws EntryNotFoundException  {
-        Entry dbEntry = findById(entry.getID())
-                .orElseThrow(EntryNotFoundException::new);
-        dbEntry.setTranslationEnglish(entry.getTranslationEnglish());
-        dbEntry.setTranslationPolish(entry.getTranslationPolish());
-        dbEntry.setTranslationGerman(entry.getTranslationGerman());
-        return entryRepository.getEntityManager().merge(dbEntry);
+        return entryRepository.update(entry);
     }
-
 }
