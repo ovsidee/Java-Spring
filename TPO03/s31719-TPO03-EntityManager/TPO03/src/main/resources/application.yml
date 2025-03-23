@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: TPO03
+  banner:
+    location: logo-app
+    charset: UTF-8
+  profiles:
+    active: upperCase
+  h2:
+    console:
+      path: /my-h2-console
+  datasource:
+    url: jdbc:h2:file:./db/books;DATABASE_TO_UPPER=false
+    username: s31719
+    password: TPO03
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+pl:
+  edu:
+    pja:
+      tpo03:
+        filename: "./src/main/resources/words.csv"
