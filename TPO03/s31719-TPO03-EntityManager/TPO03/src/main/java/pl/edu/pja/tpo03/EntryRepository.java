@@ -41,8 +41,10 @@ public class EntryRepository {
     }
 
     @Transactional
-    public void deleteById(Long id) {
-        findById(id).ifPresent(entityManager::remove);
+    public void deleteById(Long id) throws EntryNotFoundException {
+        Entry entry = findById(id)
+                .orElseThrow(EntryNotFoundException::new);
+        entityManager.remove(entry);
     }
 
     @Transactional

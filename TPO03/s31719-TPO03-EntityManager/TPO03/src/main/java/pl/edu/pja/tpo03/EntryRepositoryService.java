@@ -34,7 +34,7 @@ public class EntryRepositoryService {
         entryRepository.addEntry(entry);
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(Long id) throws EntryNotFoundException {
         entryRepository.deleteById(id);
     }
 

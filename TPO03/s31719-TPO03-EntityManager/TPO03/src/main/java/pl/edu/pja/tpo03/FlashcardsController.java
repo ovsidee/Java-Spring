@@ -24,6 +24,46 @@ public class FlashcardsController {
         databaseInitializer.initializeDatabase();
     }
 
+    public void run() {
+        while (true) {
+            System.out.println(
+                          "\nType \"1\" to get the list of all flashcards.\n" +
+                            "Type \"2\" to add a new flashcard.\n" +
+                            "Type \"3\" to get a test.\n" +
+                            "Type \"4\" to modify a flashcard.\n" +
+                            "Type \"5\" to remove a flashcard.\n" +
+                            "Type \"6\" to sort flashcards.\n" +
+                            "Type \"7\" to exit."
+            );
+            int command = scanner.nextInt();
+            switch (command) {
+                case 1 ->  printAllEntries();
+                case 2 ->  userAddEntry();
+                case 3 -> {
+                    System.out.println("Random word test:");
+                    Entry randomEntry = entryRepositoryService.getRandomEntry();
+
+                    int randomNumber = random.nextInt(3) + 1;
+                    switch (randomNumber) {
+                        // 1 - English (user must enter German + Polish)
+                        case 1 -> userWriteGermanPolishWords(randomEntry);
+                        // 2 - German (user must enter English + Polish)
+                        case 2 -> userWriteEnglishPolishWords(randomEntry);
+                        // 3 - Polish (user must enter English + German)
+                        case 3 -> userWriteEnglishGermanWords(randomEntry);
+                    }
+                }
+                case 4 -> modifyEntry();
+                case 5 -> removeFlashCard();
+                case 6 -> sortFlashCards();
+                case 7 -> {
+                    System.out.println("Bye bye...");
+                    System.exit(1);
+                }
+            }
+        }
+    }
+
     public void printAllEntries(){
         for (Entry entry : entryRepositoryService.getAllEntries()) {
             System.out.println(
@@ -54,54 +94,15 @@ public class FlashcardsController {
         }
     }
 
-    public void run() {
-        while (true) {
-            System.out.println(
-                    "\nType \"1\" to get the list of all flashcards.\n" +
-                            "Type \"2\" to add a new flashcard.\n" +
-                            "Type \"3\" to get a test.\n" +
-                            "Type \"4\" to modify a flashcard.\n" +
-                            "Type \"5\" to remove a flashcard.\n" +
-                            "Type \"6\" to sort flashcards.\n" +
-                            "Type \"7\" to exit."
-            );
-            int command = scanner.nextInt();
-            switch (command) {
-                case 1 ->  printAllEntries();
-                case 2 ->  userAddEntry();
-                case 3 -> {
-                    System.out.println("Random word test:");
-                    Entry randomEntry = entryRepositoryService.getRandomEntry();
-
-                    int randomNumber = random.nextInt(3) + 1;
-                    switch (randomNumber) {
-                        // 1 - English (user must enter German + Polish)
-                        case 1 -> userWriteGermanPolishWords(randomEntry);
-                        // 2 - German (user must enter English + Polish)
-                        case 2 -> userWriteEnglishPolishWords(randomEntry);
-                        // 3 - Polish (user must enter English + German)
-                        case 3 -> userWriteEnglishGermanWords(randomEntry);
-                    }
-                }
-                case 4 -> {
-                    printAllEntries();
-                    modifyEntry();
-                }
-                case 5 -> {
-                    printAllEntries();
-                    System.out.println("Write an ID of the word you want to remove: ");
-                    Long idToRemove = scanner.nextLong();
-                    entryRepositoryService.deleteById(idToRemove);
-                    System.out.println("Removed successfully!");
-                }
-                case 6 -> {
-                    sortFlashCards();
-                }
-                case 7 -> {
-                    System.out.println("Bye bye...");
-                    System.exit(1);
-                }
-            }
+    public void removeFlashCard(){
+        printAllEntries();
+        System.out.println("Write an ID of the flashcard you want to remove: ");
+        Long idToRemove = scanner.nextLong();
+        try {
+            entryRepositoryService.deleteById(idToRemove);
+            System.out.println("Entry deleted successfully.");
+        } catch (EntryNotFoundException e) {
+            System.out.println("Error: Entry not found.");
         }
     }
 
@@ -135,6 +136,7 @@ public class FlashcardsController {
     }
 
     public void modifyEntry(){
+        printAllEntries();
         System.out.println("Write an ID of the Flashcard you want to modify: ");
         Long idToModify = scanner.nextLong();
         scanner.nextLine();
