@@ -1,19 +1,18 @@
 package pl.edu.pja.tpo03;
 
+import jakarta.persistence.EntityManager;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public class EntryRepository {
-    public List<Entry> entries;
+    private final EntityManager entityManager;
 
-    public EntryRepository(List<Entry> entries) {
-        this.entries = entries;
+    public EntryRepository(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 
-    public List<Entry> getAllEntries() {
-        return entries;
+    public EntityManager getEntityManager() {
+        return entityManager;
     }
 
 }

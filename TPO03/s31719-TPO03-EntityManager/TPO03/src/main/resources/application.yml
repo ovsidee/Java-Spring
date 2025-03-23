@@ -12,11 +12,11 @@ spring:
   datasource:
     url: jdbc:h2:file:./db/entries;DATABASE_TO_UPPER=false
     username: s31719
-    password: TPO03
+    password: 1234
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 pl:
