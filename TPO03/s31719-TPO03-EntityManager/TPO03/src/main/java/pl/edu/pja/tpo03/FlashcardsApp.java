@@ -5,10 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
-public class Tpo03Application {
+public class FlashcardsApp {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext context = SpringApplication.run(Tpo03Application.class, args);
+        ConfigurableApplicationContext context = SpringApplication.run(FlashcardsApp.class, args);
 
         FlashcardsController flashcardsController = context.getBean(FlashcardsController.class);
         flashcardsController.run();
