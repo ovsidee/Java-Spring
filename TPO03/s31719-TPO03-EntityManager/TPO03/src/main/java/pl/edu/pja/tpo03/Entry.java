@@ -44,6 +44,18 @@ public class Entry {
         return ID;
     }
 
+    public void setTranslationPolish(String translationPolish) {
+        this.translationPolish = translationPolish;
+    }
+
+    public void setTranslationEnglish(String translationEnglish) {
+        this.translationEnglish = translationEnglish;
+    }
+
+    public void setTranslationGerman(String translationGerman) {
+        this.translationGerman = translationGerman;
+    }
+
     @Override
     public String toString() {
         return translationEnglish + " - " + translationGerman + ", " + translationPolish;

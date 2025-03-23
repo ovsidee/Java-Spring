@@ -2,6 +2,7 @@ package pl.edu.pja.tpo03;
 
 import org.springframework.stereotype.Controller;
 
+import java.util.Optional;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -56,8 +57,9 @@ public class FlashcardsController {
                       "\nType \"1\" to get the list of all flashcards.\n" +
                       "Type \"2\" to add a new flashcard.\n" +
                       "Type \"3\" to get a test.\n" +
-                      "Type \"4\" to remove flashcard.\n" +
-                      "Type \"5\" to exit."
+                      "Type \"4\" to modify flashcard.\n" +
+                      "Type \"5\" to remove flashcard.\n" +
+                      "Type \"6\" to exit."
             );
             int command = scanner.nextInt();
             switch (command) {
@@ -79,10 +81,43 @@ public class FlashcardsController {
                 }
                 case 4 -> {
                     printAllEntries();
+                    System.out.println("Write an ID of the word you want to modify: ");
+                    Long idToModify = scanner.nextLong();
+                    scanner.nextLine();
+
+                    Optional<Entry> optionalEntry = entryRepositoryService.findById(idToModify);
+
+                    if (optionalEntry.isEmpty()) {
+                        System.out.println("Error: Entry not found.");
+                    } else {
+                        Entry entryToUpdate = optionalEntry.get();
+
+                        System.out.println("Enter new English translation (current: " + entryToUpdate.getTranslationEnglish() + "): ");
+                        String newEnglish = scanner.nextLine();
+
+                        System.out.println("Enter new German translation (current: " + entryToUpdate.getTranslationGerman() + "): ");
+                        String newGerman = scanner.nextLine();
+
+                        System.out.println("Enter new Polish translation (current: " + entryToUpdate.getTranslationPolish() + "): ");
+                        String newPolish = scanner.nextLine();
+
+                        entryToUpdate.setTranslationEnglish(newEnglish);
+                        entryToUpdate.setTranslationGerman(newGerman);
+                        entryToUpdate.setTranslationPolish(newPolish);
+
+                        try {
+                            entryRepositoryService.update(entryToUpdate);
+                        } catch (EntryNotFoundException e) {
+                            System.out.println("Error: Entry not found.");
+                        }
+                    }
+                }
+                case 5 -> {
+                    printAllEntries();
                     System.out.println("Write an ID of the word you want to remove: ");
                     Long idToRemove = scanner.nextLong();
                     entryRepositoryService.deleteById(idToRemove);
-                } case 5 -> {
+                } case 6 -> {
                     System.out.println("Bye bye...");
                     System.exit(1);
                 }

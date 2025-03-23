@@ -31,18 +31,28 @@ public class EntryRepositoryService {
         );
     }
 
+    public Optional<Entry> findById(Long id) {
+        return Optional.ofNullable(entryRepository.getEntityManager().find(Entry.class, id));
+    }
+
     @Transactional
     public void addEntry(Entry entry) {
         entryRepository.getEntityManager().persist(entry);
     }
 
-    public Optional findById(Long id){
-        return Optional.ofNullable(entryRepository.getEntityManager().find(Entry.class, id));
+    @Transactional
+    public void deleteById(Long id)   {
+        findById(id).ifPresent(entryRepository.getEntityManager()::remove);
     }
 
     @Transactional
-    public void deleteById(Long id){
-        findById(id).ifPresent(entryRepository.getEntityManager()::remove);
+    public Entry update(Entry entry) throws EntryNotFoundException  {
+        Entry dbEntry = findById(entry.getID())
+                .orElseThrow(EntryNotFoundException::new);
+        dbEntry.setTranslationEnglish(entry.getTranslationEnglish());
+        dbEntry.setTranslationPolish(entry.getTranslationPolish());
+        dbEntry.setTranslationGerman(entry.getTranslationGerman());
+        return entryRepository.getEntityManager().merge(dbEntry);
     }
 
 }
