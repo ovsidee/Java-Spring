@@ -42,7 +42,12 @@ public class EntryRepositoryService {
         return entryRepository.update(entry);
     }
 
-    public List<Entry> getAllEntriesSorted(String language, boolean ascending) {
-        return entryRepository.getAllEntriesSorted(language, ascending);
+    public List<Entry> getAllEntriesSorted(String language, String order) {
+        return entryRepository.getAllEntriesSorted(language, order);
     }
+
+    public List<Entry> searchEntries(String languageToSearch, String word) {
+        return entryRepository.searchByLanguage(languageToSearch, word);
+    }
+
 }

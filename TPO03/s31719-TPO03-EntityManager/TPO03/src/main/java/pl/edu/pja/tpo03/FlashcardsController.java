@@ -21,6 +21,7 @@ public class FlashcardsController {
         this.random = random;
         this.scanner = scanner;
         this.databaseInitializer = databaseInitializer;
+
         databaseInitializer.initializeDatabase();
     }
 
@@ -33,7 +34,8 @@ public class FlashcardsController {
                             "Type \"4\" to modify a flashcard.\n" +
                             "Type \"5\" to remove a flashcard.\n" +
                             "Type \"6\" to sort flashcards.\n" +
-                            "Type \"7\" to exit."
+                            "Type \"7\" to find a flashcard.\n" +
+                            "Type \"8\" to exit."
             );
             int command = scanner.nextInt();
             switch (command) {
@@ -56,7 +58,8 @@ public class FlashcardsController {
                 case 4 -> modifyEntry();
                 case 5 -> removeFlashCard();
                 case 6 -> sortFlashCards();
-                case 7 -> {
+                case 7 -> searchFlashcards();
+                case 8 -> {
                     System.out.println("Bye bye...");
                     System.exit(1);
                 }
@@ -64,7 +67,7 @@ public class FlashcardsController {
         }
     }
 
-    public void printAllEntries(){
+    public void printAllEntries() {
         for (Entry entry : entryRepositoryService.getAllEntries()) {
             System.out.println(
                     "ID: \"" + entry.getID() + "\"," +
@@ -75,7 +78,7 @@ public class FlashcardsController {
         }
     }
 
-    public void userAddEntry(){
+    public void userAddEntry() {
         System.out.println("Write the word in English");
         String wordInEnglish = scanner.next();
 
@@ -94,7 +97,7 @@ public class FlashcardsController {
         }
     }
 
-    public void removeFlashCard(){
+    public void removeFlashCard() {
         printAllEntries();
         System.out.println("Write an ID of the flashcard you want to remove: ");
         Long idToRemove = scanner.nextLong();
@@ -106,7 +109,7 @@ public class FlashcardsController {
         }
     }
 
-    public void sortFlashCards(){
+    public void sortFlashCards() {
         System.out.println("Choose a language to sort by (english, german, polish): ");
         String languageChoice = scanner.next().toLowerCase();
 
@@ -121,13 +124,15 @@ public class FlashcardsController {
             }
         }
 
-        System.out.println("Choose order (1 - Ascending, 2 - Descending): ");
-        int orderChoice = scanner.nextInt();
-        boolean ascending;
-        if (orderChoice == 1) ascending = true;
-        else ascending = false;
+        System.out.println("Choose order to sort words: \"ASC\" - ascendingly, \"DESC\" - descendingly");
+        String orderChoice = scanner.next();
 
-        List<Entry> sortedEntries = entryRepositoryService.getAllEntriesSorted(fieldName, ascending);
+        if (!orderChoice.equals("ASC") && !orderChoice.equals("DESC")) {
+            System.out.println("Incorrect input.");
+            return;
+        }
+
+        List<Entry> sortedEntries = entryRepositoryService.getAllEntriesSorted(fieldName, orderChoice);
         for (Entry entry : sortedEntries){
             System.out.println("English: " + wordFormat.printFormattedWord(entry.getTranslationEnglish()) +
                     ", German: " + wordFormat.printFormattedWord(entry.getTranslationGerman()) +
@@ -135,7 +140,7 @@ public class FlashcardsController {
         }
     }
 
-    public void modifyEntry(){
+    public void modifyEntry() {
         printAllEntries();
         System.out.println("Write an ID of the Flashcard you want to modify: ");
         Long idToModify = scanner.nextLong();
@@ -166,6 +171,40 @@ public class FlashcardsController {
             } catch (EntryNotFoundException e) {
                 System.out.println("Error: Entry not found.");
             }
+        }
+    }
+
+    public void searchFlashcards() {
+        System.out.println("Choose a language to search by (english, german, polish): ");
+        String languageChoice = scanner.next().toLowerCase();
+
+        String fieldName;
+        switch (languageChoice) {
+            case "english" -> fieldName = "translationEnglish";
+            case "german" -> fieldName = "translationGerman";
+            case "polish" -> fieldName = "translationPolish";
+            default -> {
+                System.out.println("Invalid language choice.");
+                return;
+            }
+        }
+
+        System.out.println("Enter word that you want to search: ");
+        String word = scanner.next();
+
+        List<Entry> searchResults = entryRepositoryService.searchEntries(fieldName, word);
+
+        if (!searchResults.isEmpty()) {
+            for (Entry entry : searchResults) {
+                System.out.println(
+                        "ID: \"" + entry.getID() + "\"," +
+                                " English: \"" + wordFormat.printFormattedWord(entry.getTranslationEnglish()) + "\"," +
+                                " German: \"" + wordFormat.printFormattedWord(entry.getTranslationGerman()) + "\"," +
+                                " Polish: \"" + wordFormat.printFormattedWord(entry.getTranslationPolish()) + "\""
+                );
+            }
+        } else {
+            System.out.println("No flashcards found.");
         }
     }
 

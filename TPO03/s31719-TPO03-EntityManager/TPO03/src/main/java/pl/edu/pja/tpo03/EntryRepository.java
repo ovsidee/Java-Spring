@@ -27,11 +27,12 @@ public class EntryRepository {
         return Optional.ofNullable(entityManager.find(Entry.class, id));
     }
 
-    public List<Entry> getAllEntriesSorted(String translationLanguage, boolean ascending) {
-        String order = ascending ? "ASC" : "DESC";
+    public List<Entry> getAllEntriesSorted(String translationLanguage, String order) {
         String queryString = "SELECT e FROM Entry e ORDER BY e." + translationLanguage + " " + order;
 
-        TypedQuery<Entry> query = entityManager.createQuery(queryString, Entry.class);
+        TypedQuery<Entry> query = entityManager.createQuery(
+                queryString, Entry.class
+        );
         return query.getResultList();
     }
 
@@ -56,4 +57,17 @@ public class EntryRepository {
         dbEntry.setTranslationGerman(entry.getTranslationGerman());
         return dbEntry;
     }
+
+    public List<Entry> searchByLanguage(String languageToSearch, String word) {
+        String queryString = "SELECT e FROM Entry e WHERE e." + languageToSearch + " LIKE :word";
+
+        TypedQuery<Entry> query = entityManager.createQuery(
+                queryString, Entry.class
+        );
+
+        query.setParameter("word", "%" + word + "%");
+
+        return query.getResultList();
+    }
+
 }
