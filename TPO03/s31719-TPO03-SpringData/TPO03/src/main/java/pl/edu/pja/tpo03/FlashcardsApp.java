@@ -3,6 +3,7 @@ package pl.edu.pja.tpo03;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import pl.edu.pja.tpo03.controller.FlashcardsController;
 
 @SpringBootApplication
 public class FlashcardsApp {

@@ -1,4 +1,4 @@
-package pl.edu.pja.tpo03;
+package pl.edu.pja.tpo03.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

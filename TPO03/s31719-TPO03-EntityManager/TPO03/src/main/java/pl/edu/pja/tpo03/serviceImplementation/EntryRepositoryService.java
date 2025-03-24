@@ -1,6 +1,9 @@
-package pl.edu.pja.tpo03;
+package pl.edu.pja.tpo03.serviceImplementation;
 
 import org.springframework.stereotype.Service;
+import pl.edu.pja.tpo03.exception.EntryNotFoundException;
+import pl.edu.pja.tpo03.entries.Entry;
+import pl.edu.pja.tpo03.repository.EntryRepository;
 
 import java.util.List;
 import java.util.Optional;

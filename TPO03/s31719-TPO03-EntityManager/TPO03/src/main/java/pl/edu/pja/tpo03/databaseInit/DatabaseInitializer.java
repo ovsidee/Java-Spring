@@ -1,6 +1,8 @@
-package pl.edu.pja.tpo03;
+package pl.edu.pja.tpo03.databaseInit;
 
 import org.springframework.stereotype.Component;
+import pl.edu.pja.tpo03.entries.Entry;
+import pl.edu.pja.tpo03.serviceImplementation.EntryRepositoryService;
 
 @Component
 public class DatabaseInitializer {

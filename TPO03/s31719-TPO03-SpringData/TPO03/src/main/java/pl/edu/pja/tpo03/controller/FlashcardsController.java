@@ -1,7 +1,11 @@
-package pl.edu.pja.tpo03;
+package pl.edu.pja.tpo03.controller;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
+import pl.edu.pja.tpo03.databaseInit.DatabaseInitializer;
+import pl.edu.pja.tpo03.entries.Entry;
+import pl.edu.pja.tpo03.repository.SpringDataEntryRepository;
+import pl.edu.pja.tpo03.services.WordFormat;
 
 import java.util.*;
 
@@ -61,9 +65,7 @@ public class FlashcardsController {
                     System.out.println("Bye bye...");
                     System.exit(1);
                 }
-                default -> {
-                    System.out.println("Incorrect input.");
-                }
+                default -> System.out.println("Incorrect input.");
             }
         }
     }

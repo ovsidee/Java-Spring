@@ -1,9 +1,11 @@
-package pl.edu.pja.tpo03;
+package pl.edu.pja.tpo03.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import pl.edu.pja.tpo03.exception.EntryNotFoundException;
+import pl.edu.pja.tpo03.entries.Entry;
 
 import java.util.List;
 import java.util.Optional;
