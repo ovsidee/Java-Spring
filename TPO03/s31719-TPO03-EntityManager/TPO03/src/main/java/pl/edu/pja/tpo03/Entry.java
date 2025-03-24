@@ -8,7 +8,6 @@ import java.util.Objects;
 public class Entry {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ID;
 
     @Column(nullable = false)
@@ -40,10 +39,6 @@ public class Entry {
         return translationEnglish;
     }
 
-    public Long getID() {
-        return ID;
-    }
-
     public void setTranslationPolish(String translationPolish) {
         this.translationPolish = translationPolish;
     }
@@ -54,6 +49,14 @@ public class Entry {
 
     public void setTranslationGerman(String translationGerman) {
         this.translationGerman = translationGerman;
+    }
+
+    public void setID(Long ID) {
+        this.ID = ID;
+    }
+
+    public Long getID() {
+        return ID;
     }
 
     @Override

@@ -112,23 +112,6 @@ public class FlashcardsController {
         }
     }
 
-    public String chooseLanguageFindFieldName() {
-        System.out.println("Choose a language to sort by (english, german, polish): ");
-        String languageChoice = scanner.next().toLowerCase();
-
-        String fieldName;
-        switch (languageChoice) {
-            case "english" -> fieldName = "translationEnglish";
-            case "german" -> fieldName = "translationGerman";
-            case "polish" -> fieldName = "translationPolish";
-            default -> {
-                System.out.println("Invalid language choice.");
-                return null;
-            }
-        }
-        return fieldName;
-    }
-
     public void sortFlashCards() {
         String fieldName = chooseLanguageFindFieldName();
 
@@ -266,5 +249,22 @@ public class FlashcardsController {
         } else {
             System.out.println("Incorrect! The correct answer was: \"" + wordFormat.printFormattedWord(randomEntry.getTranslationPolish()) + "\"");
         }
+    }
+
+    public String chooseLanguageFindFieldName() {
+        System.out.println("Choose a language to sort by (english, german, polish): ");
+        String languageChoice = scanner.next().toLowerCase();
+
+        String fieldName;
+        switch (languageChoice) {
+            case "english" -> fieldName = "translationEnglish";
+            case "german" -> fieldName = "translationGerman";
+            case "polish" -> fieldName = "translationPolish";
+            default -> {
+                System.out.println("Invalid language choice.");
+                return null;
+            }
+        }
+        return fieldName;
     }
 }

@@ -20,10 +20,10 @@ public class EntryRepositoryService {
         return entryRepository.getAllEntries();
     }
 
-    public Entry getRandomEntry() {
-        return entryRepository.getAllEntries().get(
-                random.nextInt(entryRepository.getAllEntries().size())
-        );
+    public Entry getRandomEntry() throws EntryNotFoundException {
+        return entryRepository.findById(
+                random.nextLong(entryRepository.getMaxId())
+        ).orElseThrow(EntryNotFoundException::new);
     }
 
     public Optional<Entry> findById(Long id) {
@@ -31,6 +31,9 @@ public class EntryRepositoryService {
     }
 
     public void addEntry(Entry entry) {
+        Long nextId = entryRepository.getMaxId() + 1;
+        entry.setID(nextId);
+
         entryRepository.addEntry(entry);
     }
 

@@ -43,16 +43,20 @@ public class FlashcardsController {
                 case 2 ->  userAddEntry();
                 case 3 -> {
                     System.out.println("Random word test:");
-                    Entry randomEntry = entryRepositoryService.getRandomEntry();
 
-                    int randomNumber = random.nextInt(3) + 1;
-                    switch (randomNumber) {
-                        // 1 - English (user must enter German + Polish)
-                        case 1 -> userWriteGermanPolishWords(randomEntry);
-                        // 2 - German (user must enter English + Polish)
-                        case 2 -> userWriteEnglishPolishWords(randomEntry);
-                        // 3 - Polish (user must enter English + German)
-                        case 3 -> userWriteEnglishGermanWords(randomEntry);
+                    try {
+                        Entry randomEntry = entryRepositoryService.getRandomEntry();
+                        int randomNumber = random.nextInt(3) + 1;
+                        switch (randomNumber) {
+                            // 1 - English (user must enter German + Polish)
+                            case 1 -> userWriteGermanPolishWords(randomEntry);
+                            // 2 - German (user must enter English + Polish)
+                            case 2 -> userWriteEnglishPolishWords(randomEntry);
+                            // 3 - Polish (user must enter English + German)
+                            case 3 -> userWriteEnglishGermanWords(randomEntry);
+                        }
+                    } catch (EntryNotFoundException e) {
+                        System.out.println("No flash cards in the database.");
                     }
                 }
                 case 4 -> modifyEntry();

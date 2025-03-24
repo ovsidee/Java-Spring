@@ -27,6 +27,14 @@ public class EntryRepository {
         return Optional.ofNullable(entityManager.find(Entry.class, id));
     }
 
+    public Long getMaxId() {
+        String queryString = "SELECT COALESCE(MAX(e.ID), 0) FROM Entry e";
+        TypedQuery<Long> query = entityManager.createQuery(
+                queryString, Long.class
+        );
+        return query.getSingleResult();
+    }
+
     public List<Entry> getAllEntriesSorted(String translationLanguage, String order) {
         String queryString = "SELECT e FROM Entry e ORDER BY e." + translationLanguage + " " + order;
 

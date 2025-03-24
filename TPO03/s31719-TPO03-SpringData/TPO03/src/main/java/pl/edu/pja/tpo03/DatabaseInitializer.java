@@ -2,9 +2,6 @@ package pl.edu.pja.tpo03;
 
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Component
 public class DatabaseInitializer {
 
