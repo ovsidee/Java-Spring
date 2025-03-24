@@ -5,7 +5,7 @@ spring:
     location: logo-app
     charset: UTF-8
   profiles:
-    active: upperCase
+    active: original
   h2:
     console:
       path: /my-h2-console
