@@ -35,11 +35,11 @@ public class FlashcardsController {
                             "Type \"7\" to find a flashcard.\n" +
                             "Type \"8\" to exit."
             );
-            int command = scanner.nextInt();
+            String command = scanner.next();
             switch (command) {
-                case 1 ->  printAllEntries();
-                case 2 ->  userAddEntry();
-                case 3 -> {
+                case "1" ->  printAllEntries();
+                case "2" ->  userAddEntry();
+                case "3" -> {
                     System.out.println("Random word test:");
                     Entry randomEntry = springDataEntryRepository.getRandomEntry();
 
@@ -53,13 +53,16 @@ public class FlashcardsController {
                         case 3 -> userWriteEnglishGermanWords(randomEntry);
                     }
                 }
-                case 4 -> modifyEntry();
-                case 5 -> removeFlashCard();
-                case 6 -> sortFlashCards();
-                case 7 -> searchFlashcards();
-                case 8 -> {
+                case "4" -> modifyEntry();
+                case "5" -> removeFlashCard();
+                case "6" -> sortFlashCards();
+                case "7" -> searchFlashcards();
+                case "8" -> {
                     System.out.println("Bye bye...");
                     System.exit(1);
+                }
+                default -> {
+                    System.out.println("Incorrect input.");
                 }
             }
         }

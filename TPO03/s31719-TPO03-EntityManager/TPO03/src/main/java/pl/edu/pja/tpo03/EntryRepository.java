@@ -44,7 +44,6 @@ public class EntryRepository {
         return query.getResultList();
     }
 
-
     @Transactional
     public void addEntry(Entry entry) {
         entityManager.persist(entry);
