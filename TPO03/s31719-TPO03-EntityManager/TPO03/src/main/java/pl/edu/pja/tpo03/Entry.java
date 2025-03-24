@@ -10,13 +10,13 @@ public class Entry {
     @Id
     private Long ID;
 
-    @Column(nullable = false)
+    @Column
     private String translationEnglish;
 
-    @Column(nullable = false)
+    @Column
     private String translationGerman;
 
-    @Column(nullable = false)
+    @Column
     private String translationPolish;
 
     public Entry() {}

@@ -4,7 +4,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DatabaseInitializer {
-
     private final EntryRepositoryService entryRepositoryService;
 
     public DatabaseInitializer(EntryRepositoryService entryRepositoryService) {
@@ -26,5 +25,4 @@ public class DatabaseInitializer {
             entryRepositoryService.addEntry(new Entry("Tree", "Baum", "Drzewo"));
         }
     }
-
 }

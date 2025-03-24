@@ -181,20 +181,26 @@ public class FlashcardsController {
         String word = scanner.next();
 
         //TODO todo search feature
-//        List<Entry> searchResults = springDataEntryRepository.searchEntries(fieldName, word);
-//
-//        if (!searchResults.isEmpty()) {
-//            for (Entry entry : searchResults) {
-//                System.out.println(
-//                        "ID: \"" + entry.getID() + "\"," +
-//                                " English: \"" + wordFormat.printFormattedWord(entry.getTranslationEnglish()) + "\"," +
-//                                " German: \"" + wordFormat.printFormattedWord(entry.getTranslationGerman()) + "\"," +
-//                                " Polish: \"" + wordFormat.printFormattedWord(entry.getTranslationPolish()) + "\""
-//                );
-//            }
-//        } else {
-//            System.out.println("No flashcards found.");
-//        }
+        List<Entry> searchResults = springDataEntryRepository.searchEntries(fieldName, word);
+
+        switch (lang){
+            case "en": results = repository.searchByEnWord(word); break;
+            case "de": results = repository.searchByDeWord(word); break;
+            case "pl": results = repository.searchByPlWord(word); break;
+        }
+
+        if (!searchResults.isEmpty()) {
+            for (Entry entry : searchResults) {
+                System.out.println(
+                        "ID: \"" + entry.getID() + "\"," +
+                                " English: \"" + wordFormat.printFormattedWord(entry.getTranslationEnglish()) + "\"," +
+                                " German: \"" + wordFormat.printFormattedWord(entry.getTranslationGerman()) + "\"," +
+                                " Polish: \"" + wordFormat.printFormattedWord(entry.getTranslationPolish()) + "\""
+                );
+            }
+        } else {
+            System.out.println("No flashcards found.");
+        }
     }
 
     public void userWriteEnglishGermanWords(Entry randomEntry) {

@@ -36,13 +36,12 @@ public class EntryRepository {
     }
 
     public List<Entry> getAllEntriesSorted(String translationLanguage, String order) {
-        String queryString = "SELECT e FROM Entry e ORDER BY e." + translationLanguage + " " + order;
+        String queryString = "SELECT e FROM Entry e ORDER BY LOWER(e." + translationLanguage + ") " + order;
 
-        TypedQuery<Entry> query = entityManager.createQuery(
-                queryString, Entry.class
-        );
+        TypedQuery<Entry> query = entityManager.createQuery(queryString, Entry.class);
         return query.getResultList();
     }
+
 
     @Transactional
     public void addEntry(Entry entry) {

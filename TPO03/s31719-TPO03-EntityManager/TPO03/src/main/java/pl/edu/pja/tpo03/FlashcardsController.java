@@ -21,11 +21,10 @@ public class FlashcardsController {
         this.random = random;
         this.scanner = scanner;
         this.databaseInitializer = databaseInitializer;
-
-        databaseInitializer.initializeDatabase();
     }
 
     public void run() {
+        databaseInitializer.initializeDatabase();
         while (true) {
             System.out.println(
                           "\nType \"1\" to get the list of all flashcards.\n" +
