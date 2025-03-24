@@ -3,10 +3,7 @@ package pl.edu.pja.tpo03;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 @Controller
 public class FlashcardsController {
@@ -176,17 +173,21 @@ public class FlashcardsController {
 
     public void searchFlashcards() {
         String fieldName = chooseLanguageFindFieldName();
+        if (fieldName == null) return;
 
         System.out.println("Enter word that you want to search: ");
         String word = scanner.next();
 
-        //TODO todo search feature
-        List<Entry> searchResults = springDataEntryRepository.searchEntries(fieldName, word);
+        List<Entry> searchResults;
 
-        switch (lang){
-            case "en": results = repository.searchByEnWord(word); break;
-            case "de": results = repository.searchByDeWord(word); break;
-            case "pl": results = repository.searchByPlWord(word); break;
+        switch (fieldName) {
+            case "translationEnglish" -> searchResults = springDataEntryRepository.searchByEnglishWord("%" + word + "%");
+            case "translationGerman" -> searchResults = springDataEntryRepository.searchByGermanWord("%" + word + "%");
+            case "translationPolish" -> searchResults = springDataEntryRepository.searchByPolishWord("%" + word + "%");
+            default ->{
+                System.out.println("Invalid search field.");
+                return;
+            }
         }
 
         if (!searchResults.isEmpty()) {

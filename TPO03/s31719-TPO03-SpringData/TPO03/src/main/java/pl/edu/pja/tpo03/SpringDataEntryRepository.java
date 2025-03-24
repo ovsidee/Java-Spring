@@ -18,12 +18,12 @@ public interface SpringDataEntryRepository extends JpaRepository<Entry, Long> {
         return entries.get(random.nextInt(entries.size()));
     }
 
-    @Query("SELECT e FROM Entry e WHERE e.translationEnglish LIKE %:word%")
-    List<Entry> searchByEnWord(@Param("word") String word);
+    @Query("SELECT e FROM Entry e WHERE LOWER(e.translationEnglish) LIKE LOWER(:word)")
+    List<Entry> searchByEnglishWord(@Param("word") String word);
 
-    @Query("SELECT e FROM Entry e WHERE e.translationGerman LIKE %:word%")
-    List<Entry> searchByDeWord(@Param("word") String word);
+    @Query("SELECT e FROM Entry e WHERE LOWER(e.translationGerman) LIKE LOWER(:word)")
+    List<Entry> searchByGermanWord(@Param("word") String word);
 
-    @Query("SELECT e FROM Entry e WHERE e.translationPolish LIKE %:word%")
-    List<Entry> searchByPlWord(@Param("word") String word);
+    @Query("SELECT e FROM Entry e WHERE LOWER(e.translationPolish) LIKE LOWER(:word)")
+    List<Entry> searchByPolishWord(@Param("word") String word);
 }
