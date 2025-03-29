@@ -4,6 +4,7 @@ spring:
   h2:
     console:
       path: /my-h2-console
+      enabled: true
   datasource:
     url: jdbc:h2:mem:books
     username: s31719
@@ -12,8 +13,6 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     defer-datasource-initialization: true
   sql:
     init:
