@@ -10,10 +10,10 @@ public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long ID;
 
     @Column(nullable = false)
-    private String name;
+    private String Name;
 
     @ManyToMany(mappedBy = "authors")
     private List<Book> books = new ArrayList<>();
@@ -21,29 +21,25 @@ public class Author {
     public Author() {}
 
     public Author(String name) {
-        this.name = name;
+        this.Name = name;
     }
 
     public Long getId() {
-        return id;
+        return ID;
     }
-
     public String getName() {
-        return name;
+        return Name;
     }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public List<Book> getBooks() {
         return books;
     }
 
+    public void setId(Long id) {
+        this.ID = id;
+    }
+    public void setName(String name) {
+        this.Name = name;
+    }
     public void setBooks(List<Book> books) {
         this.books = books;
     }
@@ -51,7 +47,7 @@ public class Author {
     @Override
     public String toString() {
         return "Author{" +
-                "id=" + id +
-                ", name='" + name + '\'' + '}';
+                "id=" + ID +
+                ", name='" + Name + '\'' + '}';
     }
 }

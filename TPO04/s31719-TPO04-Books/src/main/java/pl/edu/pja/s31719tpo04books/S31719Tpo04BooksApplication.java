@@ -14,15 +14,15 @@ public class S31719Tpo04BooksApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(S31719Tpo04BooksApplication.class, args);
 
-        SpringDataAuthorRepository authorRepo = context.getBean(SpringDataAuthorRepository.class);
-        SpringDataBookRepository bookRepo = context.getBean(SpringDataBookRepository.class);
-        SpringDataPublisherRepository publisherRepo = context.getBean(SpringDataPublisherRepository.class);
+        SpringDataAuthorRepository authorRepository = context.getBean(SpringDataAuthorRepository.class);
+        SpringDataBookRepository bookRepository = context.getBean(SpringDataBookRepository.class);
+        SpringDataPublisherRepository publisherRepository = context.getBean(SpringDataPublisherRepository.class);
 
-        authorRepo.findAll().forEach(System.out::println);
+        authorRepository.findAll().forEach(System.out::println);
 
-        bookRepo.findAll().forEach(System.out::println);
+        bookRepository.findAll().forEach(System.out::println);
 
-        publisherRepo.findAll().forEach(System.out::println);
+        publisherRepository.findAll().forEach(System.out::println);
     }
 
 }
