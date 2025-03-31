@@ -18,7 +18,7 @@ public class Book {
     @JoinColumn(name = "publisher_id", nullable = false)
     private Publisher publisher;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "Book_Author",
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "author_id")
@@ -66,6 +66,6 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book ID: " + ID + ", Title: " + Title + ", Publisher: " + publisher;
+        return "Book ID: " + ID + ", Title: " + Title + ", Publisher: " + publisher + ", Authors: " + authors;
     }
 }

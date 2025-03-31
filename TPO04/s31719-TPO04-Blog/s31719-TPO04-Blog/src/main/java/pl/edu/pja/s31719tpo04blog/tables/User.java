@@ -19,7 +19,7 @@ public class User {
     @OneToOne(mappedBy = "manager", cascade = CascadeType.ALL)
     public Blog managedBlog;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -49,7 +49,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User ID: " + id + ", Email: " + email;
+        return "User ID: " + id + ", Email: " + email + ", roles: " + roles;
     }
 
 }

@@ -22,8 +22,8 @@ public interface SpringDataRoleRepository extends CrudRepository<Role, Long> {
     List<Role> findRolesWithoutUsers();
 
     @Query("SELECT r FROM Role r" +
-            " JOIN r.users u " +
+            " LEFT JOIN r.users u " +
             "GROUP BY r " +
-            "HAVING COUNT(u) > :minUsers")
+            "HAVING COUNT(u) >= :minUsers")
     List<Role> findRolesByMinUsers(@Param("minUsers") Long minUsers);
 }

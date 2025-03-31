@@ -30,7 +30,7 @@ public interface SpringDataUserRepository extends CrudRepository<User, Long> {
     User findManagerByBlogId(@Param("blogId") Long blogId);
 
     @Query("SELECT u FROM User u" +
-            " JOIN u.articles a " +
+            " LEFT JOIN u.articles a " +
             "GROUP BY u " +
             "HAVING COUNT(a) >= :minArticles")
     List<User> findUsersByMinArticles(@Param("minArticles") Long minArticles);

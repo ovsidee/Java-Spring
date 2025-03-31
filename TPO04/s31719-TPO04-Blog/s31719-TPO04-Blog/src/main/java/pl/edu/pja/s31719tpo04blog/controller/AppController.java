@@ -271,10 +271,10 @@ public class AppController {
                         "Type \"2\" to delete User\n" +
                         "Type \"3\" to get all Users\n" +
                         "Type \"4\" to search User by email\n" +
-                        "Type \"5\" to find Users by Blog ID\n" +
-                        "Type \"6\" to find User by id\n" +
+                        "Type \"5\" to find User by ID\n" +
+                        "Type \"6\" to find Users by Blog id\n" +
                         "Type \"7\" to find Users by role name\n" +
-                        "Type \"8\" to find User manager by Blog ID\n" +
+                        "Type \"8\" to find User (manager) by Blog ID\n" +
                         "Type \"9\" to find Users with minimum articles\n" +
                         "Type \"10\" to find Users without articles."
         );
@@ -303,7 +303,7 @@ public class AppController {
                 userService.searchUsers(email).forEach(System.out::println);
             }
             case "5" -> {
-                System.out.println("Enter blog ID to search: ");
+                System.out.println("Enter User ID to search: ");
                 Long id = Long.parseLong(scanner.nextLine());
                 userService.findUserById(id)
                         .ifPresentOrElse(
@@ -312,7 +312,7 @@ public class AppController {
                         );
             }
             case "6" -> {
-                System.out.print("Enter user ID: ");
+                System.out.print("Enter Blog ID: ");
                 Long id = Long.parseLong(scanner.nextLine());
                 for(User u : userService.findUsersByBlogId(id))
                     System.out.println(u);

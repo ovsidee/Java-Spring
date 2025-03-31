@@ -18,9 +18,9 @@ public interface SpringDataBlogRepository extends CrudRepository<Blog, Long> {
 
     Blog findByManagerId(Long managerId);
 
-    @Query("SELECT b FROM Blog b" +
-            " JOIN b.articles a" +
-            " GROUP BY b " +
-            "HAVING COUNT(a) > :minArticles")
+    @Query("SELECT b FROM Blog b " +
+            "LEFT JOIN b.articles a " +
+            "GROUP BY b " +
+            "HAVING COUNT(a) >= :minArticles")
     List<Blog> findBlogsByMinArticles(@Param("minArticles") Long minArticles);
 }
