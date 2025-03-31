@@ -11,7 +11,9 @@ public interface SpringDataBlogRepository extends CrudRepository<Blog, Long> {
     @Query("SELECT b FROM Blog b")
     List<Blog> findAllBlogs();
 
-    @Query("SELECT b FROM Blog b WHERE LOWER(b.name) LIKE LOWER(CONCAT('%', :name, '%'))")
+    @Query("SELECT b FROM Blog b " +
+            "WHERE LOWER(b.name)" +
+            " LIKE LOWER(CONCAT('%', :name, '%'))")
     List<Blog> findByNameContainingIgnoreCase(String name);
 
     Blog findByManagerId(Long managerId);

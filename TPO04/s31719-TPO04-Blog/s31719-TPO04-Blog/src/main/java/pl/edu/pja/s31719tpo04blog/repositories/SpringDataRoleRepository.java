@@ -11,11 +11,14 @@ public interface SpringDataRoleRepository extends CrudRepository<Role, Long> {
     @Query("SELECT r FROM Role r")
     List<Role> findAllRoles();
 
-    @Query("SELECT r FROM Role r WHERE LOWER(r.name) LIKE LOWER(CONCAT('%', :name, '%'))")
+    @Query("SELECT r FROM Role r" +
+            " WHERE LOWER(r.name) " +
+            "LIKE LOWER(CONCAT('%', :name, '%'))")
     List<Role> findByNameContainingIgnoreCase(String name);
 
     @Query("SELECT r FROM Role r " +
-            "LEFT JOIN r.users u WHERE u IS NULL")
+            "LEFT JOIN r.users u " +
+            "WHERE u IS NULL")
     List<Role> findRolesWithoutUsers();
 
     @Query("SELECT r FROM Role r" +

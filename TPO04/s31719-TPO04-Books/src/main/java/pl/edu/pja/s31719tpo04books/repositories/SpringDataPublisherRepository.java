@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface SpringDataPublisherRepository extends CrudRepository<Publisher, Long> {
     @Query("SELECT p FROM Publisher p")
-    List<Publisher> findAllPublisher();
+    List<Publisher> findAllPublishers();
 }

@@ -58,14 +58,17 @@ public class AppController {
     }
 
     public void managingArticles() {
-        System.out.println("You are now in Article Management mode.");
-
+        System.out.print("\nYou are now in Article Management mode.");
         System.out.println(
                 "\nType \"1\" to add Article\n" +
                         "Type \"2\" to delete Article\n" +
                         "Type \"3\" to get all Articles\n" +
                         "Type \"4\" to search Articles\n" +
-                        "Type \"5\" to find Article by id."
+                        "Type \"5\" to find Article by id\n" +
+                        "Type \"6\" to find Articles by author ID\n" +
+                        "Type \"7\" to find Articles by blog ID\n" +
+                        "Type \"8\" to find Articles by author email\n" +
+                        "Type \"9\" to search Articles by keyword."
         );
 
         System.out.print("Enter command: ");
@@ -95,7 +98,6 @@ public class AppController {
                 System.out.print("Enter article ID to delete: ");
                 Long id = Long.parseLong(scanner.nextLine());
                 articleService.deleteArticle(id);
-                System.out.println("Article deleted!");
             }
             case "3" -> {
                 for (Article a : articleService.getAllArticles())
@@ -115,20 +117,41 @@ public class AppController {
                                 () -> System.out.println("Article not found.")
                         );
             }
+            case "6" -> {
+                System.out.print("Enter author ID: ");
+                Long authorId = Long.parseLong(scanner.nextLine());
+                articleService.findArticlesByAuthorId(authorId).forEach(System.out::println);
+            }
+            case "7" -> {
+                System.out.print("Enter blog ID: ");
+                Long blogId = Long.parseLong(scanner.nextLine());
+                articleService.findArticlesByBlogId(blogId).forEach(System.out::println);
+            }
+            case "8" -> {
+                System.out.print("Enter author email: ");
+                String email = scanner.nextLine();
+                articleService.findArticlesByAuthorEmail(email).forEach(System.out::println);
+            }
+            case "9" -> {
+                System.out.print("Enter keyword: ");
+                String keyword = scanner.nextLine();
+                articleService.searchArticlesByKeyword(keyword).forEach(System.out::println);
+            }
             default -> System.out.println("Invalid command! Try again.");
         }
 
     }
 
     public void managingBlogs() {
-        System.out.println("You are now in Blog Management mode.");
-
+        System.out.println("\nYou are now in Blog Management mode.");
         System.out.println(
                 "\nType \"1\" to add Blog\n" +
                         "Type \"2\" to delete Blog\n" +
                         "Type \"3\" to get all Blogs\n" +
                         "Type \"4\" to search Blog\n" +
-                        "Type \"5\" to find Blog by id."
+                        "Type \"5\" to find Blog by id\n" +
+                        "Type \"6\" to find Blog by manager ID\n" +
+                        "Type \"7\" to find Blogs with minimum articles."
         );
         System.out.print("Enter command: ");
         String command = scanner.nextLine().trim();
@@ -149,7 +172,6 @@ public class AppController {
                 System.out.print("Enter blog ID to delete: ");
                 Long id = Long.parseLong(scanner.nextLine());
                 blogService.deleteBlog(id);
-                System.out.println("Blog deleted!");
             }
             case "3" -> {
                 for (Blog b : blogService.getAllBlogs())
@@ -169,20 +191,31 @@ public class AppController {
                                 () -> System.out.println("Blog not found.")
                         );
             }
+            case "6" -> {
+                System.out.print("Enter manager ID: ");
+                Long managerId = Long.parseLong(scanner.nextLine());
+                System.out.println(blogService.findBlogByManagerId(managerId));
+            }
+            case "7" -> {
+                System.out.println("Enter the minimum articles:");
+                Long min = Long.parseLong(scanner.nextLine());
+                blogService.findAllBlogsByMinArticles(min).forEach(System.out::println);
+            }
             default -> System.out.println("Invalid command! Try again.");
         }
 
     }
 
     public void managingRoles() {
-        System.out.println("You are now in Role Management mode.");
-
+        System.out.println("\nYou are now in Role Management mode.");
         System.out.println(
                 "\nType \"1\" to add Role\n" +
                         "Type \"2\" to delete Role\n" +
                         "Type \"3\" to get all Roles\n" +
                         "Type \"4\" to search Role\n" +
-                        "Type \"5\" to find Role by id."
+                        "Type \"5\" to find Role by id\n" +
+                        "Type \"6\" to find roles without users\n" +
+                        "Type \"7\" to find roles by minimum users."
         );
         System.out.print("Enter command: ");
         String command = scanner.nextLine().trim();
@@ -198,7 +231,6 @@ public class AppController {
                 System.out.print("Enter role ID to delete: ");
                 Long id = Long.parseLong(scanner.nextLine());
                 roleService.deleteRole(id);
-                System.out.println("Role deleted!");
             }
             case "3" -> {
                 for (Role r : roleService.getAllRoles())
@@ -218,21 +250,33 @@ public class AppController {
                                 () -> System.out.println("Role not found.")
                         );
             }
+            case "6" -> {
+                for (Role r : roleService.findAllRolesWithoutUsers())
+                    System.out.println(r);
+            }
+            case "7" -> {
+                System.out.println("Enter minumum users:");
+                Long min = Long.parseLong(scanner.nextLine());
+                for(Role r: roleService.findAllRolesByMinUsers(min))
+                    System.out.println(r);
+            }
             default -> System.out.println("Invalid command! Try again.");
         }
 
     }
-
     public void managingUsers() {
-        System.out.println("You are now in User Management mode.");
-
+        System.out.println("\nYou are now in User Management mode.");
         System.out.println(
                 "\nType \"1\" to add User\n" +
                         "Type \"2\" to delete User\n" +
                         "Type \"3\" to get all Users\n" +
                         "Type \"4\" to search User by email\n" +
-                        "Type \"5\" to search User by Blog ID\n" +
-                        "Type \"6\" to find User by id."
+                        "Type \"5\" to find Users by Blog ID\n" +
+                        "Type \"6\" to find User by id\n" +
+                        "Type \"7\" to find Users by role name\n" +
+                        "Type \"8\" to find User manager by Blog ID\n" +
+                        "Type \"9\" to find Users with minimum articles\n" +
+                        "Type \"10\" to find Users without articles."
         );
         System.out.print("Enter command: ");
         String command = scanner.nextLine().trim();
@@ -248,7 +292,6 @@ public class AppController {
                 System.out.print("Enter user ID to delete: ");
                 Long id = Long.parseLong(scanner.nextLine());
                 userService.deleteUser(id);
-                System.out.println("User deleted!");
             }
             case "3" -> {
                 for (User u : userService.getAllUsers())
@@ -274,6 +317,22 @@ public class AppController {
                 for(User u : userService.findUsersByBlogId(id))
                     System.out.println(u);
             }
+            case "7" -> {
+                System.out.print("Enter role name: ");
+                String roleName = scanner.nextLine();
+                userService.findUsersByRoleName(roleName).forEach(System.out::println);
+            }
+            case "8" -> {
+                System.out.print("Enter blog ID: ");
+                Long blogId = Long.parseLong(scanner.nextLine());
+                System.out.println(userService.findUserManagerByBlogId(blogId));
+            }
+            case "9" -> {
+                System.out.print("Enter minimum number of articles: ");
+                Long minArticles = Long.parseLong(scanner.nextLine());
+                userService.findAllUsersByMinArticles(minArticles).forEach(System.out::println);
+            }
+            case "10" -> userService.findAllUsersWithoutArticles().forEach(System.out::println);
             default -> System.out.println("Invalid command! Try again.");
         }
 

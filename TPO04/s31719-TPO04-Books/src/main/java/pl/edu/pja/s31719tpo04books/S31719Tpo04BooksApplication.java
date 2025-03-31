@@ -29,7 +29,7 @@ public class S31719Tpo04BooksApplication {
             System.out.println(b);
 
         System.out.println("\nfindAllPublishers()");
-        for (Publisher p : publisherRepository.findAll())
+        for (Publisher p : publisherRepository.findAllPublishers())
             System.out.println(p);
     }
 }

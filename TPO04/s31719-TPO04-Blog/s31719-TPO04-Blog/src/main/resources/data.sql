@@ -43,7 +43,7 @@ VALUES ('PRI Blog', 1),
        ('MAD Blog', 20);
 
 INSERT INTO article (title, author_id, blog_id)
-VALUES ('Fight Club', 1, 1),
+VALUES ('Fight Club', 1, null),
        ('Interstellar', 2, 2),
        ('The Prestige', 3, 3),
        ('The Dark Knight', 4, 4),
@@ -61,7 +61,7 @@ VALUES ('Fight Club', 1, 1),
        ('Shutter Island', 16, 16),
        ('Spring Boot In Action 5', 17, 17),
        ('Imitation game', 18, 18),
-       ('Joker', 19, 19),
+       ('Joker', 18, 19),
        ('Spider-man', 20, 20);
 
 INSERT INTO role (name)
@@ -92,20 +92,20 @@ INSERT INTO user_roles (user_id, role_id)
 VALUES (1, 1),
        (2, 2),
        (3, 3),
-       (4, 4),
+       (4, 14),
        (5, 1),
-       (6, 2),
+       (6, 6),
        (7, 3),
-       (8, 4),
+       (8, 5),
        (9, 1),
-       (10, 2),
+       (10, 16),
        (11, 3),
        (12, 4),
-       (13, 1),
-       (14, 2),
-       (15, 3),
+       (13, 8),
+       (14, 7),
+       (15, 1),
        (16, 4),
-       (17, 1),
+       (17, 2),
        (18, 2),
        (19, 3),
-       (20, 4);
+       (20, 12);

@@ -50,7 +50,7 @@ public class UserService {
     public List<User> findAllUsersByMinArticles(Long minArticles) {
         return userRepository.findUsersByMinArticles(minArticles);
     }
-    
+
     public List<User> findAllUsersWithoutArticles() {
         return userRepository.findUsersWithoutArticles();
     }

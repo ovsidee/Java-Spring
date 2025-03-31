@@ -10,15 +10,10 @@ spring:
     username: s31719
     password: 123
   jpa:
-#    show-sql: true
     hibernate:
       ddl-auto: update
     defer-datasource-initialization: true
+    show-sql: true
   sql:
     init:
       mode: embedded
-#      data-locations: classpath:sql-data/users.sql,
-#                      classpath:sql-data/blog.sql,
-#                      classpath:sql-data/article.sql,
-#                      classpath:sql-data/role.sql,
-#                      classpath:sql-data/user_roles.sql
