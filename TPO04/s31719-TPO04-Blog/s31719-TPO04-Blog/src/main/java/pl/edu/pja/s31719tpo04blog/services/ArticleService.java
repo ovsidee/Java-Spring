@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Service
 public class ArticleService {
-    public SpringDataArticleRepository articleRepository;
+    private final SpringDataArticleRepository articleRepository;
 
     public ArticleService(SpringDataArticleRepository articleRepository) {
         this.articleRepository = articleRepository;
@@ -19,19 +19,35 @@ public class ArticleService {
         return articleRepository.findAllArticles();
     }
 
-    public Article addArticle(Article article) {
-        return articleRepository.save(article);
+    public Optional<Article> findArticleById(Long id) {
+        return articleRepository.findById(id);
     }
 
-    public void deleteArticle(Long articleId) {
-        articleRepository.deleteById(articleId);
+    public void addArticle(Article article) {
+        articleRepository.save(article);
+    }
+
+    public void deleteArticle(Long id) {
+        articleRepository.deleteById(id);
     }
 
     public List<Article> searchArticles(String title) {
         return articleRepository.findByTitleContainingIgnoreCase(title);
     }
 
-    public Optional<Article> findArticleById(Long id) {
-        return articleRepository.findById(id);
+    public List<Article> findArticlesByAuthorId(Long authorId) {
+        return articleRepository.findByAuthorId(authorId);
+    }
+
+    public List<Article> findArticlesByBlogId(Long blogId) {
+        return articleRepository.findByBlogId(blogId);
+    }
+
+    public List<Article> findArticlesByAuthorEmail(String email) {
+        return articleRepository.findByAuthorEmail(email);
+    }
+
+    public List<Article> searchArticlesByKeyword(String keyword) {
+        return articleRepository.searchByKeyword(keyword);
     }
 }

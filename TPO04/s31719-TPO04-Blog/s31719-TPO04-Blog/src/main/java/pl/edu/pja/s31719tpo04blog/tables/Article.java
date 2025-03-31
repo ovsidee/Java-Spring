@@ -55,6 +55,6 @@ public class Article {
 
     @Override
     public String toString() {
-        return "Article ID: " + id + ", Title" + title + ", Author " + author + ", Blog" + blog;
+        return "Article ID: " + id + ", Title: " + title + ", Author: " + author + ", Blog: " + blog;
     }
 }

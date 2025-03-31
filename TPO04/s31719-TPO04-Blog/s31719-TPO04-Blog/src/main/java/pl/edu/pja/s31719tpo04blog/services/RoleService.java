@@ -19,15 +19,27 @@ public class RoleService {
         return roleRepository.findAllRoles();
     }
 
-    public Role addRole(Role role) {
-        return roleRepository.save(role);
+    public Optional<Role> findRoleById(Long id) {
+        return roleRepository.findById(id);
+    }
+
+    public void addRole(Role role) {
+        roleRepository.save(role);
     }
 
     public void deleteRole(Long id) {
         roleRepository.deleteById(id);
     }
 
-    public Optional<Role> findRoleById(Long id) {
-        return roleRepository.findById(id);
+    public List<Role> searchRoles(String name) {
+        return roleRepository.findByNameContainingIgnoreCase(name);
+    }
+
+    public List<Role> findAllRolesWithoutUsers(){
+        return roleRepository.findRolesWithoutUsers();
+    }
+
+    public List<Role> findAllRolesByMinUsers(Long minUsers) {
+        return roleRepository.findRolesByMinUsers(minUsers);
     }
 }

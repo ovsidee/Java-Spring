@@ -23,11 +23,23 @@ public class BlogService {
         return blogRepository.findById(id);
     }
 
-    public Blog addBlog(Blog blog) {
-        return blogRepository.save(blog);
+    public void addBlog(Blog blog) {
+        blogRepository.save(blog);
     }
 
     public void deleteBlog(Long id) {
         blogRepository.deleteById(id);
+    }
+
+    public List<Blog> searchBlogs(String name) {
+        return blogRepository.findByNameContainingIgnoreCase(name);
+    }
+
+    public Blog findBlogByManagerId(Long id) {
+        return blogRepository.findByManagerId(id);
+    }
+
+    public List<Blog> findAllBlogsByMinArticles(Long minArticles) {
+        return blogRepository.findBlogsByMinArticles(minArticles);
     }
 }
