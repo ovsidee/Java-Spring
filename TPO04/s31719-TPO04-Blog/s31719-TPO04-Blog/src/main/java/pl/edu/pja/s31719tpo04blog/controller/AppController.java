@@ -11,7 +11,7 @@ import pl.edu.pja.s31719tpo04blog.tables.Blog;
 import pl.edu.pja.s31719tpo04blog.tables.Role;
 import pl.edu.pja.s31719tpo04blog.tables.User;
 
-import java.util.Scanner;
+import java.util.*;
 
 @Controller
 public class AppController {
@@ -285,7 +285,12 @@ public class AppController {
             case "1" -> {
                 System.out.print("Enter user email: ");
                 String email = scanner.nextLine();
-                userService.addUser(new User(email));
+
+                System.out.print("Enter role names (comma-separated): ");
+                String rolesInput = scanner.nextLine();
+                Set<String> roleNames = new HashSet<>(Arrays.asList(rolesInput.split(",")));
+
+                userService.addUser(email, roleNames);
                 System.out.println("User added!");
             }
             case "2" -> {

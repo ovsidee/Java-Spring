@@ -7,7 +7,6 @@ import java.util.List;
 
 @Entity
 public class Author {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ID;
@@ -46,6 +45,6 @@ public class Author {
 
     @Override
     public String toString() {
-        return "Author ID: " + ID + ", Name: " + Name;
+        return "Author ID: " + ID + ", Name: " + Name + ", Books: " + books.stream().map(Book::getTitle).toList();
     }
 }

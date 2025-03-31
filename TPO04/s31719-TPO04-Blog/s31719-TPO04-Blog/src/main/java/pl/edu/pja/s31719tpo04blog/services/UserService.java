@@ -2,17 +2,22 @@ package pl.edu.pja.s31719tpo04blog.services;
 
 import org.springframework.stereotype.Service;
 import pl.edu.pja.s31719tpo04blog.repositories.SpringDataUserRepository;
+import pl.edu.pja.s31719tpo04blog.tables.Role;
 import pl.edu.pja.s31719tpo04blog.tables.User;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class UserService {
     private final SpringDataUserRepository userRepository;
+    private final RoleService roleService;
 
-    public UserService(SpringDataUserRepository userRepository) {
+    public UserService(SpringDataUserRepository userRepository, RoleService roleService) {
         this.userRepository = userRepository;
+        this.roleService = roleService;
     }
 
     public List<User> getAllUsers() {
@@ -23,7 +28,13 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public void addUser(User user) {
+    public void addUser(String email, Set<String> roleNames) {
+        Set<Role> roles = new HashSet<>();
+        for (String roleName : roleNames) {
+            roleService.findRoleByName(roleName.trim()).ifPresent(roles::add);
+        }
+
+        User user = new User(email, roles);
         userRepository.save(user);
     }
 

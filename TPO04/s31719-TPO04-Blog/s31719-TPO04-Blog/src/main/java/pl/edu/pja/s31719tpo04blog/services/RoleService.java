@@ -42,4 +42,8 @@ public class RoleService {
     public List<Role> findAllRolesByMinUsers(Long minUsers) {
         return roleRepository.findRolesByMinUsers(minUsers);
     }
+
+    public Optional<Role> findRoleByName(String name) {
+        return roleRepository.findByName(name);
+    }
 }

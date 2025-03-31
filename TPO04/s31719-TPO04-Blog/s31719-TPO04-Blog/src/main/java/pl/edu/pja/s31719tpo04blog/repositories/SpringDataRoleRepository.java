@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import pl.edu.pja.s31719tpo04blog.tables.Role;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface SpringDataRoleRepository extends CrudRepository<Role, Long> {
     @Query("SELECT r FROM Role r")
@@ -26,4 +27,6 @@ public interface SpringDataRoleRepository extends CrudRepository<Role, Long> {
             "GROUP BY r " +
             "HAVING COUNT(u) >= :minUsers")
     List<Role> findRolesByMinUsers(@Param("minUsers") Long minUsers);
+
+    Optional<Role> findByName(String name);
 }
