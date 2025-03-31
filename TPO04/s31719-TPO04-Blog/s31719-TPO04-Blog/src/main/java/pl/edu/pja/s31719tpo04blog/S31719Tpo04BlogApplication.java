@@ -25,18 +25,25 @@ public class S31719Tpo04BlogApplication {
         UserService userService = context.getBean(UserService.class);
         RoleService roleService = context.getBean(RoleService.class);
 
-        User user1 = userService.addUser(new User("artem.gatsuta@gmail.com"));
-        Role role1 = roleService.addRole(new Role("IT-Specialist"));
-        Blog blog1 = blogService.addBlog(new Blog("Do not talk about Fight Club", user1));
-        Article article1 = articleService.addArticle(new Article("Fight Club", user1, blog1));
+        User user1 = new User("artem.shestak@gmail.com");
+        userService.addUser(user1);
 
-        System.out.println("Created Entities:");
+        Role role1 = new Role("IT-Specialist");
+        roleService.addRole(role1);
+
+        Blog blog1 = new Blog("Do not talk about Fight Club", user1);
+        blogService.addBlog(blog1);
+
+        Article article1 = new Article("Fight Club", user1, blog1);
+        articleService.addArticle(article1);
+
+        System.out.println("\nCreated Entities:");
         System.out.println(article1);
         System.out.println(blog1);
         System.out.println(user1);
         System.out.println(role1);
 
-        System.out.println("\nRetrieving Entities:");
+        System.out.println("\nRetrieving Entities: (with already existing data)");
         System.out.println("All Articles: " + articleService.getAllArticles());
         System.out.println("All Blogs: " + blogService.getAllBlogs());
         System.out.println("All Users: " + userService.getAllUsers());
@@ -45,11 +52,10 @@ public class S31719Tpo04BlogApplication {
         System.out.println("\nSearching for Articles with 'Spring':");
         articleService.searchArticles("Spring").forEach(System.out::println);
 
-
         System.out.println("\nDeleting User with ID: " + user1.getId());
         userService.deleteUser(user1.getId());
 
-        System.out.println("\nDeleting User with ID: \"10\"");
+        System.out.println("Deleting User with ID: 10");
         userService.deleteUser(10L);
 
         System.out.println("All Users after Deletion: " + userService.getAllUsers());

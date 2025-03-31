@@ -30,15 +30,12 @@ public class Article {
     public Long getId() {
         return id;
     }
-
     public String getTitle() {
         return title;
     }
-
     public User getAuthor() {
         return author;
     }
-
     public Blog getBlog() {
         return blog;
     }
@@ -46,15 +43,12 @@ public class Article {
     public void setId(Long id) {
         this.id = id;
     }
-
     public void setTitle(String title) {
         this.title = title;
     }
-
     public void setAuthor(User author) {
         this.author = author;
     }
-
     public void setBlog(Blog blog) {
         this.blog = blog;
     }

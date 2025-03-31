@@ -31,15 +31,12 @@ public class Blog {
     public Long getId() {
         return id;
     }
-
     public String getName() {
         return name;
     }
-
     public Set<Article> getArticles() {
         return articles;
     }
-
     public User getManager() {
         return manager;
     }
@@ -47,22 +44,22 @@ public class Blog {
     public void setId(Long id) {
         this.id = id;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public void setArticles(Set<Article> articles) {
         this.articles = articles;
     }
-
     public void setManager(User manager) {
         this.manager = manager;
     }
 
     @Override
     public String toString() {
-        return "Blog{id=" + id + ", name='" + name + "', managerId=" + (manager != null ? manager.getId() : "null") + "}";
+        return "Blog{id=" + id +
+                ", name='" + name +
+                "', managerId=" + (manager != null ? manager.getId() : "null")
+                + "}";
     }
 
 }
