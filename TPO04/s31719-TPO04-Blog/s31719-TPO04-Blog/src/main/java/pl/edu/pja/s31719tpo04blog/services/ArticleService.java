@@ -23,12 +23,12 @@ public class ArticleService {
         return articleRepository.save(article);
     }
 
-    public List<Article> searchArticles(String title) {
-        return articleRepository.findByTitleContainingIgnoreCase(title);
-    }
-
     public void deleteArticle(Long articleId) {
         articleRepository.deleteById(articleId);
+    }
+
+    public List<Article> searchArticles(String title) {
+        return articleRepository.findByTitleContainingIgnoreCase(title);
     }
 
     public Optional<Article> findArticleById(Long id) {

@@ -49,14 +49,9 @@ public class User {
         this.email = email;
     }
 
-//    @Override
-//    public String toString() {
-//        return "User{" +
-//                "id=" + id +
-//                ", email='" + email + '\'' +
-//                ", articles=" + articles +
-//                ", managedBlog=" + managedBlog +
-//                ", roles=" + roles +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "User{id=" + id + ", email='" + email + "'}";
+    }
+
 }

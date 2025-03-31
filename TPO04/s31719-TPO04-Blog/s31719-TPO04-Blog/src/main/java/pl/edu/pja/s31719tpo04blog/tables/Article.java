@@ -59,13 +59,13 @@ public class Article {
         this.blog = blog;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Article{" +
-//                "id=" + id +
-//                ", title='" + title + '\'' +
-//                ", author=" + author +
-//                ", blog=" + blog +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "Article{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", author=" + author +
+                ", blog=" + blog +
+                '}';
+    }
 }

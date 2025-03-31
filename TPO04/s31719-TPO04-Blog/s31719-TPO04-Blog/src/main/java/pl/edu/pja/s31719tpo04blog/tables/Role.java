@@ -46,11 +46,11 @@ public class Role {
         this.users = users;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Role{" +
-//                "name='" + name + '\'' +
-//                ", id=" + id +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "Role{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }

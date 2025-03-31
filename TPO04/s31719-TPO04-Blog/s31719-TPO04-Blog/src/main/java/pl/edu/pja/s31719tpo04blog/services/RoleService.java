@@ -13,19 +13,19 @@ public class RoleService {
         this.roleRepository = roleRepository;
     }
 
-    public Role addRole(Role role) {
-        return roleRepository.save(role);
+    public Iterable<Role> getAllRoles() {
+        return roleRepository.findAll();
     }
 
-    public Optional<Role> getRole(Long id) {
-        return roleRepository.findById(id);
+    public Role addRole(Role role) {
+        return roleRepository.save(role);
     }
 
     public void deleteRole(Long id) {
         roleRepository.deleteById(id);
     }
 
-    public Iterable<Role> getAllRoles() {
-        return roleRepository.findAll();
+    public Optional<Role> findRoleById(Long id) {
+        return roleRepository.findById(id);
     }
 }

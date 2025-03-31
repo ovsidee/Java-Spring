@@ -10,7 +10,7 @@ spring:
     username: s31719
     password: 123
   jpa:
-    show-sql: true
+#    show-sql: true
     hibernate:
       ddl-auto: update
     defer-datasource-initialization: true

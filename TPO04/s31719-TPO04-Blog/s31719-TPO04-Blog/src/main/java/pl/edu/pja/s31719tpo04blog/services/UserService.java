@@ -13,19 +13,19 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User addUser(User user) {
-        return userRepository.save(user);
+    public Iterable<User> getAllUsers() {
+        return userRepository.findAll();
     }
 
-    public Optional<User> getUser(Long id) {
-        return userRepository.findById(id);
+    public User addUser(User user) {
+        return userRepository.save(user);
     }
 
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
 
-    public Iterable<User> getAllUsers() {
-        return userRepository.findAll();
+    public Optional<User> getUser(Long id) {
+        return userRepository.findById(id);
     }
 }

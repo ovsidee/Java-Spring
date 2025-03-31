@@ -60,13 +60,9 @@ public class Blog {
         this.manager = manager;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Blog{" +
-//                "id=" + id +
-//                ", name='" + name + '\'' +
-//                ", articles=" + articles +
-//                ", manager=" + manager +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "Blog{id=" + id + ", name='" + name + "', managerId=" + (manager != null ? manager.getId() : "null") + "}";
+    }
+
 }
