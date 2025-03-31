@@ -44,10 +44,21 @@ public class S31719Tpo04BlogApplication {
         System.out.println(role1);
 
         System.out.println("\nRetrieving Entities: (with already existing data)");
-        System.out.println("All Articles: " + articleService.getAllArticles());
-        System.out.println("All Blogs: " + blogService.getAllBlogs());
-        System.out.println("All Users: " + userService.getAllUsers());
-        System.out.println("All Roles: " + roleService.getAllRoles());
+        System.out.println("All Articles: ");
+        for (Article a : articleService.getAllArticles())
+            System.out.println(a);
+
+        System.out.println("All Blogs: ");
+        for (Blog b : blogService.getAllBlogs())
+            System.out.println(b);
+
+        System.out.println("All Users: ");
+        for (User u : userService.getAllUsers())
+            System.out.println(u);
+
+        System.out.println("All Roles: ");
+        for (Role r : roleService.getAllRoles())
+            System.out.println(r);
 
         System.out.println("\nSearching for Articles with 'Spring':");
         articleService.searchArticles("Spring").forEach(System.out::println);
@@ -58,7 +69,9 @@ public class S31719Tpo04BlogApplication {
         System.out.println("Deleting User with ID: 10");
         userService.deleteUser(10L);
 
-        System.out.println("All Users after Deletion: " + userService.getAllUsers());
+        System.out.println("All Users after Deletion: ");
+        for (User u : userService.getAllUsers())
+            System.out.println(u);
 
         Optional<Article> fetchedArticle = articleService.findArticleById(article1.getId());
         fetchedArticle.ifPresentOrElse(

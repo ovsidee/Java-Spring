@@ -56,10 +56,7 @@ public class Blog {
 
     @Override
     public String toString() {
-        return "Blog{id=" + id +
-                ", name='" + name +
-                "', managerId=" + (manager != null ? manager.getId() : "null")
-                + "}";
+        return "Blog ID: " + id + ", Name: " + name + ", Manager ID: " + (manager != null ? manager.getId() : "null");
     }
 
 }

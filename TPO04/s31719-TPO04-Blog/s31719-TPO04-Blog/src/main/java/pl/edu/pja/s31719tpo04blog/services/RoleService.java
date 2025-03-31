@@ -3,6 +3,8 @@ package pl.edu.pja.s31719tpo04blog.services;
 import org.springframework.stereotype.Service;
 import pl.edu.pja.s31719tpo04blog.repositories.SpringDataRoleRepository;
 import pl.edu.pja.s31719tpo04blog.tables.Role;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -13,8 +15,8 @@ public class RoleService {
         this.roleRepository = roleRepository;
     }
 
-    public Iterable<Role> getAllRoles() {
-        return roleRepository.findAll();
+    public List<Role> getAllRoles() {
+        return roleRepository.findAllRoles();
     }
 
     public Role addRole(Role role) {

@@ -15,8 +15,8 @@ public class ArticleService {
         this.articleRepository = articleRepository;
     }
 
-    public Iterable<Article> getAllArticles() {
-        return articleRepository.findAll();
+    public List<Article> getAllArticles() {
+        return articleRepository.findAllArticles();
     }
 
     public Article addArticle(Article article) {

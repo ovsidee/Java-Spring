@@ -3,6 +3,8 @@ package pl.edu.pja.s31719tpo04blog.services;
 import org.springframework.stereotype.Service;
 import pl.edu.pja.s31719tpo04blog.repositories.SpringDataBlogRepository;
 import pl.edu.pja.s31719tpo04blog.tables.Blog;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -13,8 +15,8 @@ public class BlogService {
         this.blogRepository = blogRepository;
     }
 
-    public Iterable<Blog> getAllBlogs() {
-        return blogRepository.findAll();
+    public List<Blog> getAllBlogs() {
+        return blogRepository.findAllBlogs();
     }
 
     public Optional<Blog> findBlogById(Long id) {
