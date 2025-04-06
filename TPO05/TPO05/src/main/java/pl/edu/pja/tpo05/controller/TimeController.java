@@ -43,9 +43,7 @@ public class TimeController {
     @RequestMapping("/current-year")
     @ResponseBody
     public String year() {
-        return String.valueOf(
-                LocalDateTime.now().getYear()
-        );
+        return "<strong>Current Year: " + String.valueOf(LocalDateTime.now().getYear()) + "</strong>";
     }
 
     public String makeAppropriateFormat(String format) {
