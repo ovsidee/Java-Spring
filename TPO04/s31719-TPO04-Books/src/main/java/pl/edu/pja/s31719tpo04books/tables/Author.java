@@ -19,8 +19,9 @@ public class Author {
 
     public Author() {}
 
-    public Author(String name) {
+    public Author(String name, List<Book> books) {
         this.Name = name;
+        this.books = books;
     }
 
     public Long getId() {

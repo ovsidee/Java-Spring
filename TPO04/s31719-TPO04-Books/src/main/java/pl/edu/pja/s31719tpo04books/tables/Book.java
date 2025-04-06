@@ -28,13 +28,14 @@ public class Book {
     )
     private List<Author> authors = new ArrayList<>();
 
-    public Book(String title, Publisher publisher, List<Author> authors) {
+    public Book() {}
+
+    public Book(String title, int price, Publisher publisher, List<Author> authors) {
         this.Title = title;
+        this.price = price;
         this.publisher = publisher;
         this.authors = authors;
     }
-
-    public Book(){}
 
     public void setID(Long ID) {
         this.ID = ID;
