@@ -1,4 +1,4 @@
-package pl.edu.pja.tpo05.controller;
+package pl.edu.pja.tpo05.Controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
