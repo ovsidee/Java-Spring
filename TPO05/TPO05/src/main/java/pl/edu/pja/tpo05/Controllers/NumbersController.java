@@ -54,5 +54,3 @@ public class NumbersController {
         return stringBuilder.toString();
     }
 }
-//9Z -> from36 -> to10 = 359 res
-//2A -> from16 -> to10 = 42 res
