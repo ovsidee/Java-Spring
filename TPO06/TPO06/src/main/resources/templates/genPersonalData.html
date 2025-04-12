@@ -2,87 +2,87 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Generate Personal Data Web-Site</title>
+    <title>Generator of Random Personal Data</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1>Generator of Random Personal Data</h1>
+<h1>Generator of Random Personal Data</h1>
+<form action="/genPersonalData" method="post">
+    <!--quantity-->
+    <h2>Provide quantity of data to generate: </h2>
+    <input type="number" name="quantity" min="1" required>
+    <br>
 
-    <form action="/genPersonalData" method="post">
-        <!--quantity-->
-        <h2>Provide quantity of data to generate: </h2>
-        <input type="number" name="quantity">
-        <br>
+    <!--language-->
+    <h2>Select language to generate data: </h2>
+    <select name="lang">
+        <option value="en">English</option>
+        <option value="de">German</option>
+        <option value="pl">Polish</option>
+        <option value="es">Spanish</option>
+        <option value="ru">Russian</option>
+        <option value="fr">French</option>
+        <option value="it">Italian</option>
+        <option value="sv">Swedish</option>
+        <option value="tr">Turkish</option>
+        <option value="uk">Ukrainian</option>
+        <option value="hy">Armenian</option>
+    </select>
+    <br>
 
-        <!--language-->
-        <h2>Select language to generate data: </h2>
-        <select name="lang">
-            <option value="en">English</option>
-            <option value="de">German</option>
-            <option value="pl">Polish</option>
-            <option value="es">Spanish</option>
-            <option value="ru">Russian</option>
-            <option value="fr">French</option>
-            <option value="it">Italian</option>
-            <option value="sv">Swedish</option>
-            <option value="tr">Turkish</option>
-            <option value="uk">Ukrainian</option>
-            <option value="ar">Armenian</option>
-        </select>
-        <br>
+    <!--fields-->
+    <h2>Select Additional Fields (if needed): </h2>
+    <h3><input type="checkbox" name="fields" value="address"> Address</h3>
+    <h3><input type="checkbox" name="fields" value="university"> University Name</h3>
+    <h3><input type="checkbox" name="fields" value="country"> Country of Origin</h3>
+    <h3><input type="checkbox" name="fields" value="username"> Username</h3>
+    <h3><input type="checkbox" name="fields" value="ip"> IP</h3>
+    <h3><input type="checkbox" name="fields" value="language"> Language Spoken</h3>
+    <h3><input type="checkbox" name="fields" value="password"> Password</h3>
+    <h3><input type="checkbox" name="fields" value="creditCard"> Credit Card</h3>
 
-        <!--fields-->
-        <h2>Select Additional Fields (if needed): </h2>
-        <input type="checkbox" name="fields" value="address"/> Address<br>
-        <input type="checkbox" name="fields" value="university"/> University Name<br>
-        <input type="checkbox" name="fields" value="country"/> Country of origin<br>
-        <input type="checkbox" name="fields" value="username"/> Username<br>
-        <input type="checkbox" name="fields" value="ip"/> Ip<br>
-        <input type="checkbox" name="fields" value="language"/> Language Spoken<br>
-        <input type="checkbox" name="fields" value="password"/> Password<br>
-        <input type="checkbox" name="fields" value="creditCard"/> Credit card number<br>
-        <br>
+    <!--submit-->
+    <button type="submit">Generate</button>
+</form>
 
-        <!--submit-->
-        <button type="submit">Submit</button>
-    </form>
+<div th:if="${error}" class = "error">
+    <p th:text="${error}"></p>
+</div>
 
-    <div th:if="${error}" style="color:darkred;">
-            <p th:text="${error}"></p>
-    </div>
-
-    <div th:if="${fakeData != null and !fakeData.isEmpty()}">
-        <table style="width:100%">
-            <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Date of birth</th>
-                <th th:if="${fakeData[0].address != null}">Address</th>
-                <th th:if="${fakeData[0].universityName != null}">University Name</th>
-                <th th:if="${fakeData[0].countryOfOrigin != null}">Country Of Origin</th>
-                <th th:if="${fakeData[0].username != null}">Username</th>
-                <th th:if="${fakeData[0].ip != null}">Ip</th>
-                <th th:if="${fakeData[0].languageSpoken != null}">Language Spoken</th>
-                <th th:if="${fakeData[0].password != null}">Password</th>
-                <th th:if="${fakeData[0].creditCard != null}">Credit Card</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="person : ${fakeData}">
-                <td th:text="${person.firstName}"></td>
-                <td th:text="${person.lastName}"></td>
-                <td th:text="${person.dateOfBirth}"></td>
-                <td th:if="${person.address != null}" th:text="${person.address}"></td>
-                <td th:if="${person.universityName != null}" th:text="${person.universityName}"></td>
-                <td th:if="${person.countryOfOrigin != null}" th:text="${person.countryOfOrigin}"></td>
-                <td th:if="${person.username != null}" th:text="${person.username}"></td>
-                <td th:if="${person.ip != null}" th:text="${person.ip}"></td>
-                <td th:if="${person.languageSpoken != null}" th:text="${person.languageSpoken}"></td>
-                <td th:if="${person.password != null}" th:text="${person.password}"></td>
-                <td th:if="${person.creditCard != null}" th:text="${person.creditCard}"></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+<div th:if="${fakeData != null and !fakeData.isEmpty()}" class = "table">
+    <h2>Generated Data:</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Date of Birth</th>
+            <th th:if="${fakeData[0].address != null}">Address</th>
+            <th th:if="${fakeData[0].universityName != null}">University Name</th>
+            <th th:if="${fakeData[0].countryOfOrigin != null}">Country Of Origin</th>
+            <th th:if="${fakeData[0].username != null}">Username</th>
+            <th th:if="${fakeData[0].ip != null}">IP</th>
+            <th th:if="${fakeData[0].languageSpoken != null}">Language Spoken</th>
+            <th th:if="${fakeData[0].password != null}">Password</th>
+            <th th:if="${fakeData[0].creditCard != null}">Credit Card</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="person : ${fakeData}">
+            <td th:text="${person.firstName}"></td>
+            <td th:text="${person.lastName}"></td>
+            <td th:text="${person.dateOfBirth}"></td>
+            <td th:if="${person.address != null}" th:text="${person.address}"></td>
+            <td th:if="${person.universityName != null}" th:text="${person.universityName}"></td>
+            <td th:if="${person.countryOfOrigin != null}" th:text="${person.countryOfOrigin}"></td>
+            <td th:if="${person.username != null}" th:text="${person.username}"></td>
+            <td th:if="${person.ip != null}" th:text="${person.ip}"></td>
+            <td th:if="${person.languageSpoken != null}" th:text="${person.languageSpoken}"></td>
+            <td th:if="${person.password != null}" th:text="${person.password}"></td>
+            <td th:if="${person.creditCard != null}" th:text="${person.creditCard}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
