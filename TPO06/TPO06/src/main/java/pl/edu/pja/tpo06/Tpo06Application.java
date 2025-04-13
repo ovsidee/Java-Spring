@@ -6,9 +6,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 public class Tpo06Application {
-
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(Tpo06Application.class, args);
     }
-
 }

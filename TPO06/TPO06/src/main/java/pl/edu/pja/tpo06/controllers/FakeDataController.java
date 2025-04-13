@@ -5,7 +5,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.pja.tpo06.DTO.PersonDTO;
 import pl.edu.pja.tpo06.services.FakeDataService;
-
 import java.util.List;
 
 @Controller
