@@ -54,19 +54,10 @@
     <table>
         <thead>
         <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Date of Birth</th>
-            <th th:if="${fakeData[0].address != null}">Address</th>
-            <th th:if="${fakeData[0].universityName != null}">University Name</th>
-            <th th:if="${fakeData[0].countryOfOrigin != null}">Country Of Origin</th>
-            <th th:if="${fakeData[0].username != null}">Username</th>
-            <th th:if="${fakeData[0].ip != null}">IP</th>
-            <th th:if="${fakeData[0].languageSpoken != null}">Language Spoken</th>
-            <th th:if="${fakeData[0].password != null}">Password</th>
-            <th th:if="${fakeData[0].creditCard != null}">Credit Card</th>
+            <th th:each="header : ${headers}" th:text="${header}"></th>
         </tr>
         </thead>
+
         <tbody>
         <tr th:each="person : ${fakeData}">
             <td th:text="${person.firstName}"></td>
