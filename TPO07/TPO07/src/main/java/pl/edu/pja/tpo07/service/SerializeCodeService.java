@@ -10,13 +10,12 @@ import java.nio.file.Files;
 @Service
 public class SerializeCodeService {
     public String directoryToStoreCode = "allCodes";
-    public File directory;
-    public File[] serializedFiles;
+    public File directoryToStoreCodes;
 
     public SerializeCodeService() {
-        directory = new File(directoryToStoreCode);
-        if (!directory.exists()) {
-            directory.mkdir();
+        directoryToStoreCodes = new File(directoryToStoreCode);
+        if (!directoryToStoreCodes.exists()) {
+            directoryToStoreCodes.mkdir();
         }
     }
 
@@ -47,7 +46,7 @@ public class SerializeCodeService {
         new Thread(() -> {
             try {
                 while (true) {
-                    serializedFiles = directory.listFiles((dir, name) -> name.endsWith(".ser"));
+                    File[] serializedFiles = directoryToStoreCodes.listFiles((dir, name) -> name.endsWith(".ser"));
                     if (serializedFiles != null) {
                         for (File file : serializedFiles) {
                             boolean shouldDelete = false;
