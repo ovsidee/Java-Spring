@@ -40,7 +40,7 @@ public class FakeDataController {
         return "genPersonalData";
     }
 
-    public  List<String>  getLocalizedHeaders(String lang, List<String> fields) {
+    public List<String> getLocalizedHeaders(String lang, List<String> fields) {
         Map<String, String> tableNameHeaders = new HashMap<>();
         switch (lang) {
             case "de" -> {

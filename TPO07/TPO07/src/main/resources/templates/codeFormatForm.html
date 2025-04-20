@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Format Code Form</title>
+</head>
+<body>
+    <h1>
+        Java Code Formatter
+    </h1>
+    <form action="/submit" method="post">
+        <h3>Code you want to save:</h3>
+        <textarea name="code" placeholder="Enter the code:" rows="10" cols="50"></textarea>
+        <br><br>
+
+        <h3>Id of the code:</h3>
+        <input type="number" name="id" placeholder="Enter the id:" />
+        <br><br>
+
+        <h3>For how long you want to save the code (in secs):</h3>
+        <input type="number" name="duration" placeholder="Enter the duration (in secs):" />
+        <br><br>
+
+        <button type="submit">Submit code and save it</button>
+    </form>
+
+    <h1>Formatted code</h1>
+    <textarea readonly th:text="${codeToFormat.beforeFormatCode}"></textarea>
+    <textarea readonly th:text="${codeToFormat.formattedCode}"></textarea>
+</body>
+</html>
