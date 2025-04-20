@@ -56,8 +56,9 @@ public class CodeFormattingController {
     }
 
     @GetMapping("/load")
-    public String loadCode(@RequestParam("idToLoadCode") String id,
-                           Model model) {
+    public String loadCode(
+            @RequestParam("idToLoadCode") String id,
+            Model model) {
         try {
             CodeToFormat loaded = serializeCodeService.loadCode(id);
             if (loaded == null) {
