@@ -2,14 +2,12 @@ package pl.edu.pja.tpo07.service;
 import pl.edu.pja.tpo07.model.CodeToFormat;
 
 import jakarta.annotation.PostConstruct;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.nio.file.Files;
 
 @Service
-@Repository
 public class SerializeCodeService {
     public String directoryToStoreCode = "allCodes";
     public File directory;
@@ -25,8 +23,8 @@ public class SerializeCodeService {
     public void saveCode(CodeToFormat codeToFormat) {
         File file = new File(directoryToStoreCode + "/" + codeToFormat.getId() + ".ser");
 
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
-            oos.writeObject(codeToFormat);
+        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(file))) {
+            objectOutputStream.writeObject(codeToFormat);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -37,8 +35,8 @@ public class SerializeCodeService {
         File file = new File(directoryToStoreCode + "/" + id + ".ser");
         if (!file.exists()) return null;
 
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-            return (CodeToFormat) ois.readObject();
+        try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file))) {
+            return (CodeToFormat) objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
