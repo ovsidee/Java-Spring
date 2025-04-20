@@ -1,21 +1,26 @@
 package pl.edu.pja.tpo07.controller;
 
 import com.google.googlejavaformat.java.FormatterException;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import pl.edu.pja.tpo07.model.CodeToFormat;
 import pl.edu.pja.tpo07.service.CodeFormattingService;
+import pl.edu.pja.tpo07.service.SerializeCodeService;
 
 @Controller
 public class CodeFormattingController {
 
     public final CodeFormattingService codeFormattingService;
+    public final SerializeCodeService serializeCodeService;
 
-    public CodeFormattingController(CodeFormattingService codeFormattingService) {
+    public CodeFormattingController(CodeFormattingService codeFormattingService, SerializeCodeService serializeCodeService) {
         this.codeFormattingService = codeFormattingService;
+        this.serializeCodeService = serializeCodeService;
     }
 
     @GetMapping("/codeFormatForm")
@@ -25,16 +30,10 @@ public class CodeFormattingController {
 
     @PostMapping("/submit")
     public String formatted(
-            @RequestParam("id") Long id,
+            @RequestParam("id") String id,
             @RequestParam("code") String codeToBeFormatted,
             @RequestParam("duration") Long duration,
             Model model) {
-        System.out.println("ID: " + id);
-        System.out.println("Code: " + codeToBeFormatted);
-        System.out.println("Duration: " + duration);
-
-
-
         if (duration < 10 || duration > 7776000) {
             model.addAttribute("error", "Duration must be between 10 second and 90 days.");
             return "error";
@@ -46,13 +45,30 @@ public class CodeFormattingController {
         String formattedCode;
         try {
             formattedCode = codeFormattingService.formatCode(codeToBeFormatted);
+            codeToFormat.setFormattedCode(formattedCode);
+            serializeCodeService.saveCode(codeToFormat);
         } catch (FormatterException e) {
-            model.addAttribute("error", e.getMessage());
+            model.addAttribute("error", "Formatting failed: " + e.getMessage());
             return "error";
         }
-        codeToFormat.setFormattedCode(formattedCode);
         model.addAttribute("codeToFormat", codeToFormat);
-        return "formatted";
+        return "codeFormatForm";
+    }
+
+    @GetMapping("/load")
+    public String loadCode(@RequestParam("idToLoadCode") String id,
+                           Model model) {
+        try {
+            CodeToFormat loaded = serializeCodeService.loadCode(id);
+            if (loaded == null) {
+                model.addAttribute("error", "Code with ID '" + id + "' not found.");
+                return "error";
+            }
+            model.addAttribute("codeToFormat", loaded);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return "codeFormatForm";
     }
 }
 
