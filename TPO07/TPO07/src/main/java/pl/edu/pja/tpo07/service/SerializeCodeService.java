@@ -1,7 +1,6 @@
 package pl.edu.pja.tpo07.service;
 import pl.edu.pja.tpo07.model.CodeToFormat;
 
-import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -41,7 +40,6 @@ public class SerializeCodeService {
         }
     }
 
-    @PostConstruct
     public void start() {
         new Thread(() -> {
             try {

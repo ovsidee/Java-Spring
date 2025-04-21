@@ -21,6 +21,8 @@ public class CodeFormattingController {
     public CodeFormattingController(CodeFormattingService codeFormattingService, SerializeCodeService serializeCodeService) {
         this.codeFormattingService = codeFormattingService;
         this.serializeCodeService = serializeCodeService;
+
+        serializeCodeService.start();
     }
 
     @GetMapping("/codeFormatForm")
