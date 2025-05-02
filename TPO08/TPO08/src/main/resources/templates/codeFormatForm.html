@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout :: layout(header='Java Code Formatter')}">
+
+<head>
+  <title layout:title="Format Code Form">Format Code Form</title>
+</head>
+
+<body>
+  <main layout:fragment="content">
+    <form th:action="@{/submit}" method="post">
+      <h3>Code you want to save:</h3>
+      <textarea name="code" rows="10" cols="50" required></textarea><br>
+
+      <h3>ID of the code:</h3>
+      <input type="text" name="id" required/><br>
+
+      <h3>Duration to save (in secs):</h3>
+      <input type="number" name="duration" min="10" required/><br><br>
+
+      <button type="submit">Submit code and save it</button>
+    </form>
+
+    <form th:action="@{/load}" method="get">
+      <h3>Provide the code with ID:</h3>
+      <input type="text" name="idToLoadCode" required/>
+      <button type="submit">Load Code</button>
+    </form>
+
+    <div th:if="${codeToFormat}" style="margin-top:30px;">
+      <h2>Original Code:</h2>
+      <pre th:text="${codeToFormat.beforeFormatCode}"></pre>
+
+      <h2>Formatted Code:</h2>
+      <pre th:text="${codeToFormat.formattedCode}"></pre>
+    </div>
+  </main>
+</body>
+
+</html>
