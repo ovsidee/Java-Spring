@@ -9,34 +9,59 @@
 </head>
 
 <body>
-  <main layout:fragment="content">
-    <form th:action="@{/submit}" method="post">
-      <h3>Code you want to save:</h3>
-      <textarea name="code" rows="10" cols="50" required></textarea><br>
+<main layout:fragment="content">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-md-8">
 
-      <h3>ID of the code:</h3>
-      <input type="text" name="id" required/><br>
+        <form th:action="@{/submit}" method="post" class="p-4 bg-white rounded shadow-sm">
+          <h3 class="text-center mb-4">Code you want to save:</h3>
+          <div class="mb-3">
+            <textarea class="form-control" name="code" rows="10" required></textarea>
+          </div>
 
-      <h3>Duration to save (in secs):</h3>
-      <input type="number" name="duration" min="10" required/><br><br>
+          <h3 class="text-center mb-4">ID of the code:</h3>
+          <div class="mb-3">
+            <input type="text" class="form-control" name="id" required>
+          </div>
 
-      <button type="submit">Submit code and save it</button>
-    </form>
+          <h3 class="text-center mb-4">Duration to save (in secs):</h3>
+          <div class="mb-3">
+            <input type="number" class="form-control" name="duration" min="10" required>
+          </div>
 
-    <form th:action="@{/load}" method="get">
-      <h3>Provide the code with ID:</h3>
-      <input type="text" name="idToLoadCode" required/>
-      <button type="submit">Load Code</button>
-    </form>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Submit code and save it</button>
+          </div>
+        </form>
 
-    <div th:if="${codeToFormat}" style="margin-top:30px;">
-      <h2>Original Code:</h2>
-      <pre th:text="${codeToFormat.beforeFormatCode}"></pre>
-
-      <h2>Formatted Code:</h2>
-      <pre th:text="${codeToFormat.formattedCode}"></pre>
+      </div>
     </div>
-  </main>
-</body>
 
+    <div class="row justify-content-center mb-5">
+      <div class="col-md-6">
+        <form th:action="@{/load}" method="get" class="p-4 bg-white rounded shadow-sm">
+          <h3 class="text-center mb-4">Provide the code with ID:</h3>
+          <div class="mb-3">
+            <input type="text" class="form-control" name="idToLoadCode" required>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-secondary">Load Code</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div th:if="${codeToFormat}" class="row justify-content-center">
+      <div class="col-md-10">
+        <h2 class="text-center">Original Code:</h2>
+        <pre th:text="${codeToFormat.beforeFormatCode}" class="bg-dark text-light p-3 rounded"></pre>
+
+        <h2 class="text-center mt-4">Formatted Code:</h2>
+        <pre th:text="${codeToFormat.formattedCode}" class="bg-dark text-light p-3 rounded"></pre>
+      </div>
+    </div>
+  </div>
+</main>
+</body>
 </html>
