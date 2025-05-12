@@ -3,13 +3,13 @@ package pl.edu.pja.tpo09.Models.DTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class BMIDto {
-    private double weight;
-    private double height;
-    private int bmi;
-    private String type;
+    public double weight;
+    public double height;
+    public int bmi;
+    public String type;
 
     @JsonIgnore
-    private double bmiDouble;
+    public double bmiDouble;
 
     public BMIDto(double weight, double height, double bmiDouble, String typeOfIndex) {
         this.weight = weight;

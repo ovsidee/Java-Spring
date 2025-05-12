@@ -12,8 +12,9 @@ import java.util.Objects;
 @RequestMapping("/api/v1/BMR")
 public class BMRController {
 
-    @GetMapping(value = "/man", produces = {MediaType.APPLICATION_JSON_VALUE,
-                                               MediaType.TEXT_PLAIN_VALUE})
+    @GetMapping(path = "/man", produces = {MediaType.APPLICATION_JSON_VALUE,
+                                              MediaType.TEXT_PLAIN_VALUE,
+                                              MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<?> calculateBMROnWeightHeightAge(@RequestParam double weight,
                                                            @RequestParam double height,
                                                            @RequestParam int age,

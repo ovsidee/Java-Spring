@@ -3,21 +3,17 @@ package pl.edu.pja.tpo09.Models.DTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class BMRDto {
-    private String gender;
-    private double weight;
-    private double height;
-    private int age;
-    private int bmr;
-
-    @JsonIgnore
-    private double bmrDouble;
+    public String gender;
+    public double weight;
+    public double height;
+    public int age;
+    public int bmr;
 
     public BMRDto(String gender, double weight, double height, int age, double bmrDouble) {
         this.gender = gender;
         this.weight = weight;
         this.height = height;
         this.age = age;
-        this.bmrDouble = bmrDouble;
         this.bmr = (int) bmrDouble;
     }
 

@@ -9,7 +9,8 @@ import pl.edu.pja.tpo09.Models.DTO.BMIDto;
 public class BMIController {
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE,
-                            MediaType.TEXT_PLAIN_VALUE})
+                            MediaType.TEXT_PLAIN_VALUE,
+                            MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<?> calculateBMIBasedOnWeightHeight(@RequestParam double weight,
                                                              @RequestParam double height,
                                                              @RequestHeader("Accept") String accept) {
