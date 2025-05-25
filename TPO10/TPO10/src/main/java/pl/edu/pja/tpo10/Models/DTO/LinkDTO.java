@@ -1,23 +1,62 @@
 package pl.edu.pja.tpo10.Models.DTO;
 
-public class LinkDTO {
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+public class LinkDTO {
     public String id;
     public String name;
     public String targetUrl;
     public String redirectUrl;
-    public int visits;
+    public Long visits;
 
-    public LinkDTO() {}
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    public String password;
 
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-    public String getTargetUrl() { return targetUrl; }
-    public void setTargetUrl(String targetUrl) { this.targetUrl = targetUrl; }
-    public String getRedirectUrl() { return redirectUrl; }
-    public void setRedirectUrl(String redirectUrl) { this.redirectUrl = redirectUrl; }
-    public int getVisits() { return visits; }
-    public void setVisits(int visits) { this.visits = visits; }
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setTargetUrl(String targetUrl) {
+        this.targetUrl = targetUrl;
+    }
+
+    public void setRedirectUrl(String redirectUrl) {
+        this.redirectUrl = redirectUrl;
+    }
+
+    public void setVisits(Long visits) {
+        this.visits = visits;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getTargetUrl() {
+        return targetUrl;
+    }
+
+    public String getRedirectUrl() {
+        return redirectUrl;
+    }
+
+    public Long getVisits() {
+        return visits;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 }
