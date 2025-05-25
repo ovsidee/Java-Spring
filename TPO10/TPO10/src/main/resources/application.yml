@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: TPO10
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:db
+    driver-class-name: org.h2.Driver
+    hikari:
+      username: s3
+      password: 1234
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
