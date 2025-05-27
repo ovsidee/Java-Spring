@@ -2,16 +2,27 @@ package pl.edu.pja.tpo11.Model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import pl.edu.pja.tpo11.Constraints.HttpsUrl;
+import pl.edu.pja.tpo11.Constraints.PasswordValidation;
 
 @Entity
 public class Link {
+
     @Id
     public String id;
 
+    @Size(min = 5, max = 20)
     public String name;
 
+    @NotNull
+    @NotBlank
+    @HttpsUrl
     public String targetUrl;
 
+    @PasswordValidation
     public String password;
 
     public Long visits;
