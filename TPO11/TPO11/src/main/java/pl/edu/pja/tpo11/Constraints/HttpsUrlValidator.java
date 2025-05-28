@@ -6,6 +6,9 @@ import jakarta.validation.ConstraintValidatorContext;
 public class HttpsUrlValidator implements ConstraintValidator<HttpsUrl, String> {
     @Override
     public boolean isValid(String url, ConstraintValidatorContext context) {
-        return url != null && url.matches("^https://.+");
+        if (url == null || url.isBlank()) {
+            return true;
+        }
+        return url.matches("^https://.+");
     }
 }

@@ -12,13 +12,14 @@ public class LinkDTO {
 
     public String id;
 
+    @NotBlank
     @Size(min = 5, max = 20)
     public String name;
 
-    @UniqueTargetUrl
-    @HttpsUrl
-    @NotNull
     @NotBlank
+    @NotNull
+    @HttpsUrl
+    @UniqueTargetUrl
     public String targetUrl;
 
     public String redirectUrl;
@@ -28,7 +29,6 @@ public class LinkDTO {
     public String password;
 
     public Long visits;
-
 
     public void setId(String id) {
         this.id = id;

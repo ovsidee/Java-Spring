@@ -1,6 +1,7 @@
 package pl.edu.pja.tpo11.Services;
 
 import pl.edu.pja.tpo11.Model.DTO.LinkDTO;
+import pl.edu.pja.tpo11.Model.DTO.LinkUpdateDTO;
 import pl.edu.pja.tpo11.Model.Link;
 
 public class LinkDTOMapper {
@@ -17,5 +18,12 @@ public class LinkDTOMapper {
 
     public static Link fromDTO(LinkDTO dto, String id) {
         return new Link(id, dto.name, dto.targetUrl, dto.password);
+    }
+
+    public static void updateEntityFromUpdateDTO(Link link, LinkUpdateDTO dto) {
+        if (dto.getName() != null)
+            link.setName(dto.getName());
+        if (dto.getTargetUrl() != null)
+            link.setTargetUrl(dto.getTargetUrl());
     }
 }

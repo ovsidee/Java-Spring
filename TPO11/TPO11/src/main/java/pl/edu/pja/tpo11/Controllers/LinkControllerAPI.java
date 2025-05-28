@@ -7,7 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import pl.edu.pja.tpo11.Model.DTO.LinkDTO;
+import pl.edu.pja.tpo11.Model.DTO.LinkUpdateDTO;
 import pl.edu.pja.tpo11.Services.LinkDTOMapper;
 import pl.edu.pja.tpo11.Services.LinkService;
 
@@ -67,21 +69,24 @@ public class LinkControllerAPI {
 
     @PatchMapping("/{id}")
     public ResponseEntity<Void> update(@PathVariable String id,
-                                       @Valid @RequestBody LinkDTO linkToUpdateDTO) {
-        if (id == null || id.isBlank())
-            return ResponseEntity.badRequest().build();
+                                       @Valid @RequestBody LinkUpdateDTO linkUpdateDTO) {
+        try {
+            boolean updated = service.update(id, linkUpdateDTO);
 
-        var linkFoundedOptional = service.findById(id);
-        if (linkFoundedOptional.isEmpty())
-            return ResponseEntity.notFound().build();
+            if (!updated)
+                return ResponseEntity.notFound().build();
 
-        var link = linkFoundedOptional.get();
-        if (link.getPassword() != null && !link.getPassword().isBlank())
-            if (linkToUpdateDTO.password == null || !link.getPassword().equals(linkToUpdateDTO.password))
-                return ResponseEntity.status(403).header("reason", "wrong password").build();
+            return ResponseEntity.noContent().build();
 
-        service.save(link);
-        return ResponseEntity.noContent().build();
+        } catch (ResponseStatusException statusGotten) {
+            if (statusGotten.getStatusCode() == HttpStatus.FORBIDDEN) {
+                return ResponseEntity
+                        .status(HttpStatus.FORBIDDEN)
+                        .header("reason", statusGotten.getReason())
+                        .build();
+            }
+            return ResponseEntity.status(statusGotten.getStatusCode()).build();
+        }
     }
 
     @DeleteMapping("/{id}")

@@ -1,9 +1,11 @@
 package pl.edu.pja.tpo11.Services;
 
 import jakarta.validation.ConstraintViolation;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.web.server.ResponseStatusException;
 import pl.edu.pja.tpo11.Model.DTO.LinkDTO;
+import pl.edu.pja.tpo11.Model.DTO.LinkUpdateDTO;
 import pl.edu.pja.tpo11.Model.Link;
 import pl.edu.pja.tpo11.Repositories.LinkRepositorySpringData;
 
@@ -13,10 +15,10 @@ import java.util.Random;
 import java.util.Set;
 
 @Service
-@Validated
 public class LinkService {
-    public final LinkRepositorySpringData repository;
-    public final Validator validator;
+
+    private final LinkRepositorySpringData repository;
+    private final Validator validator;
 
     public LinkService(LinkRepositorySpringData repository, Validator validator) {
         this.repository = repository;
@@ -38,6 +40,36 @@ public class LinkService {
             );
         }
         return null;
+    }
+
+    public boolean update(String id, LinkUpdateDTO dto) {
+        if (id == null || id.isBlank())
+            return false;
+
+        Optional<Link> linkOptional = findById(id);
+        if (linkOptional.isEmpty())
+            return false;
+
+        Link existingLink = linkOptional.get();
+
+        if (dto.getPassword() == null || !existingLink.getPassword().equals(dto.getPassword()))
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "wrong password");
+
+        LinkDTOMapper.updateEntityFromUpdateDTO(existingLink, dto);
+
+        Set<ConstraintViolation<Link>> errors = validator.validate(existingLink);
+        if (errors.isEmpty()) {
+            repository.save(existingLink);
+        }
+        else {
+            errors.forEach(error ->
+                    System.out.println(
+                            "\"" + error.getPropertyPath() + "\": \"" + error.getMessage() + "\" (" + error.getInvalidValue() + ")"
+                    )
+            );
+            return false;
+        }
+        return true;
     }
 
     public Optional<Link> findById(String id) {
@@ -67,5 +99,19 @@ public class LinkService {
     public void delete(String id) {
         repository.deleteById(id);
     }
-}
 
+    public Iterable<Link> findAll() {
+        return repository.findAll();
+    }
+
+    public Optional<Link> findByName(String name) {
+        return repository.findByName(name);
+    }
+
+    public boolean verifyPassword(String id, String password) {
+        Optional<Link> linkOpt = repository.findById(id);
+        return linkOpt.isPresent() && linkOpt.get().getPassword().equals(password);
+    }
+
+
+}

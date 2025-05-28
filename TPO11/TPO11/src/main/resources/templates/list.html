@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+</head>
+<body>
+<h2 th:text="#{page.title.links}">All Links</h2>
+<table>
+    <tr><th>Name</th><th>Actions</th></tr>
+    <tr th:each="link : ${links}">
+        <td th:text="${link.name}"></td>
+        <td>
+            <a th:href="@{/edit/{name}(name=${link.name})}">Edit</a> |
+            <form th:action="@{/delete/{name}(name=${link.name})}" method="post" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
