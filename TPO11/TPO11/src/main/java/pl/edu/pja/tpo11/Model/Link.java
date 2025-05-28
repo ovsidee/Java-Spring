@@ -17,7 +17,8 @@ public class Link {
 
     public Long visits;
 
-    public Link() {}
+    public Link() {
+    }
 
     public Link(String id, String name, String targetUrl, String password) {
         this.id = id;

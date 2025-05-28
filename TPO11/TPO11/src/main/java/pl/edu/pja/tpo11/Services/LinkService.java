@@ -112,6 +112,4 @@ public class LinkService {
         Optional<Link> linkOpt = repository.findById(id);
         return linkOpt.isPresent() && linkOpt.get().getPassword().equals(password);
     }
-
-
 }

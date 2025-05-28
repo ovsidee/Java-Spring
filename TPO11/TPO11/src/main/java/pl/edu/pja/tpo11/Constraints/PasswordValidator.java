@@ -9,7 +9,9 @@ import java.util.List;
 public class PasswordValidator implements ConstraintValidator<PasswordValidation, String> {
     @Override
     public boolean isValid(String password, ConstraintValidatorContext context) {
-        if (password == null) return true;
+        if (password == null || password.isBlank()) {
+            return true;
+        }
 
         List<String> errors = new ArrayList<>();
         if (!password.matches(".*[a-z].*")) errors.add("{validation.password.missing_lowercase}");
