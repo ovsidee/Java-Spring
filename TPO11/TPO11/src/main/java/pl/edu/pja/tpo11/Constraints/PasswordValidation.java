@@ -1,6 +1,5 @@
 package pl.edu.pja.tpo11.Constraints;
 
-
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 

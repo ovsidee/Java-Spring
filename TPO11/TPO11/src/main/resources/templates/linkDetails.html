@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title th:text="#{form.view}">Link Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">
+  <h2 th:text="#{form.view}">Link Details</h2>
+
+  <table class="table table-bordered">
+    <tr><th th:text="#{table.id}">ID</th><td th:text="${link.id}">id</td></tr>
+    <tr><th th:text="#{table.name}">Name</th><td th:text="${link.name}">name</td></tr>
+    <tr><th th:text="#{table.targetUrl}">Target URL</th><td th:text="${link.targetUrl}">url</td></tr>
+    <tr><th th:text="#{table.visits}">Visits</th><td th:text="${link.visits}">visits</td></tr>
+    <tr><th th:text="#{table.password}">Password</th><td th:text="${link.password}">password</td></tr>
+  </table>
+
+  <a th:href="@{/links/edit/{id}(id=${link.id})}" class="btn btn-warning" th:text="#{table.edit}">Edit</a>
+  <form th:action="@{/links/delete/{id}(id=${link.id})}" method="post" style="display:inline-block;">
+    <input type="hidden" name="password" th:value="${enteredPassword}" />
+    <button class="btn btn-danger" onclick="return confirm('Are you sure?')" th:text="#{form.delete}">Delete</button>
+  </form>
+  <a href="/links" class="btn btn-secondary" th:text="#{button.back}">Back</a>
+</body>
+</html>

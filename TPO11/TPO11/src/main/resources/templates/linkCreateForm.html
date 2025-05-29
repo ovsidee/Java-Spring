@@ -42,31 +42,6 @@
 
         <button type="submit" class="btn btn-primary" th:text="#{form.submit}">Submit</button>
     </form>
-
-    <hr>
-    <h2 th:text="#{page.title.links}">All Links</h2>
-
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th th:text="#{table.id}">ID</th>
-            <th th:text="#{table.name}">Name</th>
-            <th th:text="#{table.password}">Password</th>
-            <th th:text="#{table.targetUrl}">Target URL</th>
-            <th th:text="#{table.visits}">Visits</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="link : ${allLinks}">
-            <td th:text="${link.id}">Id</td>
-            <td th:text="${link.name}">Name</td>
-            <td th:text="${link.password}">Password</td>
-            <td th:text="${link.targetUrl}">Url</td>
-            <td th:text="${link.visits}">0</td>
-        </tr>
-        </tbody>
-    </table>
-
 </div>
 </body>
 </html>

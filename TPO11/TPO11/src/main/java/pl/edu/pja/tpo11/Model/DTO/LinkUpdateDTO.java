@@ -3,14 +3,14 @@ package pl.edu.pja.tpo11.Model.DTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.annotation.Nullable;
-import jakarta.validation.constraints.Size;
+import pl.edu.pja.tpo11.Constraints.ConditionalSize;
 import pl.edu.pja.tpo11.Constraints.HttpsUrl;
-import pl.edu.pja.tpo11.Constraints.PasswordValidation;
 import pl.edu.pja.tpo11.Constraints.UniqueTargetUrl;
 
 public class LinkUpdateDTO {
 
-    @Size(min = 5, max = 20)
+    @ConditionalSize(min = 5, max = 20)
+    @Nullable
     public String name;
 
     @HttpsUrl
@@ -18,7 +18,6 @@ public class LinkUpdateDTO {
     @Nullable
     public String targetUrl;
 
-    @PasswordValidation
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Nullable
     public String password;
@@ -33,5 +32,17 @@ public class LinkUpdateDTO {
 
     public String getPassword() {
         return password;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setTargetUrl(@Nullable String targetUrl) {
+        this.targetUrl = targetUrl;
+    }
+
+    public void setPassword(@Nullable String password) {
+        this.password = password;
     }
 }

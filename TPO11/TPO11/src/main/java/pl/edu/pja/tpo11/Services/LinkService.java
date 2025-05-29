@@ -27,20 +27,24 @@ public class LinkService {
 
     public Link create(LinkDTO dto) {
         String id = generateRandomId(10);
+
+        if (dto.getPassword() == null || dto.getPassword().isBlank()) {
+            dto.setPassword(null);
+        }
+
         Link link = LinkDTOMapper.fromDTO(dto, id);
 
         Set<ConstraintViolation<Link>> errors = validator.validate(link);
         if (errors.isEmpty()) {
             return repository.save(link);
         } else {
-            errors.forEach(error ->
-                    System.out.println(
-                            "\"" + error.getPropertyPath() + "\": \"" + error.getMessage() + "\" (" + error.getInvalidValue() + ")"
-                    )
-            );
+            errors.forEach(error -> System.out.println(
+                    "\"" + error.getPropertyPath() + "\": \"" + error.getMessage() + "\" (" + error.getInvalidValue() + ")"
+            ));
         }
         return null;
     }
+
 
     public boolean update(String id, LinkUpdateDTO dto) {
         if (id == null || id.isBlank())
@@ -52,8 +56,16 @@ public class LinkService {
 
         Link existingLink = linkOptional.get();
 
-        if (dto.getPassword() == null || !existingLink.getPassword().equals(dto.getPassword()))
+        String existingPassword = existingLink.getPassword();
+        String submittedPassword = dto.getPassword();
+
+        // Fix: consider only truly protected links
+        boolean passwordRequired = existingPassword != null && !existingPassword.isBlank();
+
+        if (passwordRequired && (submittedPassword == null || !existingPassword.equals(submittedPassword))) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "wrong password");
+        }
+
 
         LinkDTOMapper.updateEntityFromUpdateDTO(existingLink, dto);
 

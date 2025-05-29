@@ -21,9 +21,11 @@ public class LinkDTOMapper {
     }
 
     public static void updateEntityFromUpdateDTO(Link link, LinkUpdateDTO dto) {
-        if (dto.getName() != null)
+        if (dto.getName() != null && !dto.getName().isBlank()) {
             link.setName(dto.getName());
-        if (dto.getTargetUrl() != null)
+        }
+        if (dto.getTargetUrl() != null && !dto.getTargetUrl().isBlank()) {
             link.setTargetUrl(dto.getTargetUrl());
+        }
     }
 }

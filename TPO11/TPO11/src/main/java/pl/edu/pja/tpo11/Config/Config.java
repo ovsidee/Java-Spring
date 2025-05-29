@@ -14,16 +14,16 @@ import java.util.Locale;
 public class Config implements WebMvcConfigurer {
     @Bean
     public LocaleResolver localeResolver() {
-        SessionLocaleResolver slr = new SessionLocaleResolver();
-        slr.setDefaultLocale(Locale.ENGLISH);
-        return slr;
+        SessionLocaleResolver resolver = new SessionLocaleResolver();
+        resolver.setDefaultLocale(Locale.ENGLISH);
+        return resolver;
     }
 
     @Bean
     public LocaleChangeInterceptor localeChangeInterceptor() {
-        LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
-        lci.setParamName("lang");
-        return lci;
+        LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
+        interceptor.setParamName("lang");
+        return interceptor;
     }
 
     @Override

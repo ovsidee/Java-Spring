@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title th:text="#{edit.form.name}">Edit Link</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">
+  <h2 th:text="#{edit.form.name}">Edit Link</h2>
+
+  <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+  <form th:action="@{'/links/edit/' + ${linkId}}" th:object="${updateDTO}" method="post">
+    <div class="mb-3">
+      <label th:text="#{form.name}">Name</label>
+      <input type="text" th:field="*{name}" class="form-control">
+      <div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+    </div>
+    <div class="mb-3">
+      <label th:text="#{form.url}">Target URL</label>
+      <input type="url" th:field="*{targetUrl}" class="form-control">
+      <div class="text-danger" th:if="${#fields.hasErrors('targetUrl')}" th:errors="*{targetUrl}"></div>
+    </div>
+    <div class="mb-3">
+      <label th:text="#{form.password}">Password</label>
+      <input type="password" th:field="*{password}" class="form-control">
+      <div class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+    </div>
+    <button type="submit" class="btn btn-success" th:text="#{edit.form}">Update</button>
+    <a href="/links" class="btn btn-secondary" th:text="#{cancel.form}">Cancel</a>
+  </form>
+</body>
+</html>
