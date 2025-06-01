@@ -17,17 +17,17 @@ import java.util.Set;
 public class AdminUserController {
 
     private final UserService userService;
-    private final UserRoleRepository roleRepo;
+    private final UserRoleRepository roleRepository;
 
     public AdminUserController(UserService userService, UserRoleRepository roleRepo) {
         this.userService = userService;
-        this.roleRepo = roleRepo;
+        this.roleRepository = roleRepo;
     }
 
     @GetMapping("/users")
     public String manageUsers(Model model) {
         model.addAttribute("users", userService.getAllUsers());
-        model.addAttribute("allRoles", roleRepo.findAll());
+        model.addAttribute("allRoles", roleRepository.findAll());
         return "admin-users";
     }
 
@@ -48,7 +48,7 @@ public class AdminUserController {
     @GetMapping("/users/{id}")
     public String viewUser(@PathVariable Long id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
-        model.addAttribute("allRoles", roleRepo.findAll());
+        model.addAttribute("allRoles", roleRepository.findAll());
         return "admin-user-detail";
     }
 

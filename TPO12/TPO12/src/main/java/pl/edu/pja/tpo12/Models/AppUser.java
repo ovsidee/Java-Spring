@@ -35,19 +35,53 @@ public class AppUser {
     private Set<UserRole> roles = new HashSet<>();
 
 
-    public Long getId()                       { return id; }
-    public void setId(Long id)                { this.id = id; }
-    public String getFirstName()              { return firstName; }
-    public void setFirstName(String fn)       { this.firstName = fn; }
-    public String getLastName()               { return lastName; }
-    public void setLastName(String ln)        { this.lastName = ln; }
-    public String getEmail()                  { return email; }
-    public void setEmail(String email)        { this.email = email; }
-    public String getPassword()               { return password; }
-    public void setPassword(String pwd)       { this.password = pwd; }
-    public Set<UserRole> getRoles()           { return roles; }
-    public void setRoles(Set<UserRole> roles) { this.roles = roles; }
+    public Long getId(){
+        return id;
+    }
 
+    public void setId(Long id){
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String fn) {
+        this.firstName = fn;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String ln) {
+        this.lastName = ln;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String pwd) {
+        this.password = pwd;
+    }
+
+    public Set<UserRole> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<UserRole> roles) {
+        this.roles = roles;
+    }
 
     @Override
     public boolean equals(Object o) {

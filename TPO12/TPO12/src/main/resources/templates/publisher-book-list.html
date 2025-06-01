@@ -6,29 +6,29 @@
 </head>
 <body class="container py-5">
 
-<h2>My Published Books</h2>
-<a class="btn btn-success mb-3" th:href="@{/publisher/books/add}">Add New Book</a>
+  <h2>My Published Books</h2>
+  <a class="btn btn-success mb-3" th:href="@{/publisher/books/add}">Add New Book</a>
 
-<table class="table table-bordered">
-  <thead>
-  <tr>
-    <th>Title</th><th>Author</th><th>ISBN</th><th>Actions</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr th:each="b : ${books}">
-    <td th:text="${b.title}">Title</td>
-    <td th:text="${b.author}">Author</td>
-    <td th:text="${b.isbn}">ISBN</td>
-    <td>
-      <a th:href="@{/publisher/books/edit/{id}(id=${b.bookID})}" class="btn btn-sm btn-primary">Edit</a>
-      <form th:action="@{/publisher/books/delete/{id}(id=${b.bookID})}" method="post" style="display:inline;">
-        <button class="btn btn-sm btn-danger" onclick="return confirm('Delete this book?')">Delete</button>
-      </form>
-    </td>
-  </tr>
-  </tbody>
-</table>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>Title</th><th>Author</th><th>ISBN</th><th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="b : ${books}">
+      <td th:text="${b.title}">Title</td>
+      <td th:text="${b.author}">Author</td>
+      <td th:text="${b.isbn}">ISBN</td>
+      <td>
+        <a th:href="@{/publisher/books/edit/{id}(id=${b.bookID})}" class="btn btn-sm btn-primary">Edit</a>
+        <form th:action="@{/publisher/books/delete/{id}(id=${b.bookID})}" method="post" style="display:inline;">
+          <button class="btn btn-sm btn-danger" onclick="return confirm('Delete this book?')">Delete</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 
 </body>
 </html>

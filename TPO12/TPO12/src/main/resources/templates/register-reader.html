@@ -7,7 +7,7 @@
 </head>
 <body class="container py-5">
 
-<h3 class="mb-4">Create Reader account</h3>
+<h3 class="mb-4">Create Reader Account</h3>
 
 <form th:action="@{/register/reader}" th:object="${form}" method="post" class="needs-validation" novalidate>
   <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
@@ -16,18 +16,33 @@
     <div class="col-md-6">
       <label class="form-label">First name</label>
       <input th:field="*{firstName}" class="form-control" required>
+      <div th:if="${#fields.hasErrors('firstName')}" class="text-danger small">
+        <span th:errors="*{firstName}"></span>
+      </div>
     </div>
+
     <div class="col-md-6">
       <label class="form-label">Last name</label>
       <input th:field="*{lastName}" class="form-control" required>
+      <div th:if="${#fields.hasErrors('lastName')}" class="text-danger small">
+        <span th:errors="*{lastName}"></span>
+      </div>
     </div>
+
     <div class="col-12">
       <label class="form-label">Email</label>
       <input th:field="*{email}" class="form-control" required>
+      <div th:if="${#fields.hasErrors('email')}" class="text-danger small">
+        <span th:errors="*{email}"></span>
+      </div>
     </div>
+
     <div class="col-12">
       <label class="form-label">Password</label>
       <input type="password" th:field="*{password}" class="form-control" required>
+      <div th:if="${#fields.hasErrors('password')}" class="text-danger small">
+        <span th:errors="*{password}"></span>
+      </div>
     </div>
   </div>
 

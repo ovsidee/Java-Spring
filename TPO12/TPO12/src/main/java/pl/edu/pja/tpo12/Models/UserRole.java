@@ -19,18 +19,30 @@ public class UserRole  {
     @Column(length = 255)
     private String description;
 
-    /* ---------- getters & setters ---------- */
+    public Long getId(){
+        return id;
+    }
 
-    public Long getId()                 { return id; }
-    public void setId(Long id)          { this.id = id; }
+    public void setId(Long id){
+        this.id = id;
+    }
 
-    public String getName()             { return name; }
-    public void setName(String name)    { this.name = name; }
+    public String getName(){
+        return name;
+    }
 
-    public String getDescription()      { return description; }
-    public void setDescription(String d){ this.description = d; }
+    public void setName(String name){
+        this.name = name;
+    }
 
-    /* ---------- equals / hashCode on id ---------- */
+    public String getDescription(){
+        return description;
+    }
+
+    public void setDescription(String d){
+        this.description = d;
+    }
+
 
     @Override public boolean equals(Object o) {
         if (this == o) return true;
@@ -43,7 +55,6 @@ public class UserRole  {
         return Objects.hash(id);
     }
 
-    /* ---------- toString (no recursion) ---------- */
     @Override
     public String toString() {
         return "UserRole{id=%d, name='%s'}".formatted(id, name);

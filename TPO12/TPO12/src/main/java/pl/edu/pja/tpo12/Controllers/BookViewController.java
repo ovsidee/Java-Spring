@@ -9,16 +9,16 @@ import pl.edu.pja.tpo12.Services.BookService;
 @Controller
 public class BookViewController {
 
-    private final BookService books;
+    private final BookService booksService;
 
     public BookViewController(BookService books) {
-        this.books = books;
+        this.booksService = books;
     }
 
     @GetMapping("/books/{id}")
     public String details(@PathVariable Long id, Model model) {
         model.addAttribute("book",
-                books.getBookByID(id).orElseThrow(() -> new IllegalArgumentException("Book not found")));
+                booksService.getBookByID(id).orElseThrow(() -> new IllegalArgumentException("Book not found")));
         return "book";
     }
 }

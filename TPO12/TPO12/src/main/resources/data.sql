@@ -132,11 +132,10 @@ INSERT INTO USER_ROLE (NAME, DESCRIPTION) VALUES
 ('GUEST',       'Anonymous');
 
 --app_user
-INSERT INTO APP_USER (FIRST_NAME, LAST_NAME, EMAIL, PASSWORD)
-VALUES (
-           'System', 'Admin', 'admin@gg',
-           '{bcrypt}$2a$10$icLH7eGEQcpzlPQc7A8Zru5yCEqp7f.ptRA/3zKcw48onKyB8cQQK'
-       );
+INSERT INTO APP_USER (FIRST_NAME, LAST_NAME, EMAIL, PASSWORD) VALUES
+('System', 'Admin', 'admin@gg',
+'{bcrypt}$2a$10$icLH7eGEQcpzlPQc7A8Zru5yCEqp7f.ptRA/3zKcw48onKyB8cQQK'
+);
 -- password - admin
 
 --app_user_roles
