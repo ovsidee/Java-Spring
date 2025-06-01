@@ -18,17 +18,16 @@ import org.springframework.security.web.access.expression.DefaultWebSecurityExpr
 public class SecurityConfig {
 
     private final UserDetailsService uds;
-    private final RandomPasswordEncoder randomPE;
+    private final RandomPasswordEncoder randomPasswordEncoder;
 
-    public SecurityConfig(UserDetailsService uds, RandomPasswordEncoder randomPE) {
+    public SecurityConfig(UserDetailsService uds, RandomPasswordEncoder randomPasswordEncoder) {
         this.uds = uds;
-        this.randomPE = randomPE;
+        this.randomPasswordEncoder = randomPasswordEncoder;
     }
-
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
         AuthenticationManagerBuilder builder = http.getSharedObject(AuthenticationManagerBuilder.class);
-        builder.userDetailsService(uds).passwordEncoder(randomPE);
+        builder.userDetailsService(uds).passwordEncoder(randomPasswordEncoder);
         return builder.build();
     }
 
