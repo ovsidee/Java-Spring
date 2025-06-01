@@ -59,13 +59,11 @@ public class LinkService {
         String existingPassword = existingLink.getPassword();
         String submittedPassword = dto.getPassword();
 
-        // Fix: consider only truly protected links
         boolean passwordRequired = existingPassword != null && !existingPassword.isBlank();
 
         if (passwordRequired && (submittedPassword == null || !existingPassword.equals(submittedPassword))) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "wrong password");
         }
-
 
         LinkDTOMapper.updateEntityFromUpdateDTO(existingLink, dto);
 
