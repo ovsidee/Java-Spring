@@ -1,4 +1,4 @@
-# TPO / Java SPRING
-Tpo subject in the University.
+# Java SPRING
+Some tasks that were made with using Spring framework
 
 Java SPRING
